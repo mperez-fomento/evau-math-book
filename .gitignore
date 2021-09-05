@@ -1,0 +1,11 @@
+*.pdf
+auto/
+*.zip
+*.aux
+*.log
+*.epub
+*.toc
+*.out
+*.tex~
+*.gz
+moodle/

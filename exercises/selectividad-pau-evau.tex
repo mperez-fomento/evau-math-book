@@ -1,0 +1,284 @@
+% Claves de los ejercicios (para procesado automático por scripts)
+% Antes de cada ejercicio se introducen dos líneas de comentarios:
+% - la primera recoge información sobre el examen en que apareció y el bloque del temario
+% - la segunda es una lista de etiquetas sobre temas involucrados
+% Para estandarizar las etiquetas he creado un acceso directo para seleccionarlas: C-c C-. C-t
+% Ord|Ext-yyyy-A|B-n-x.x-A|G|C|P
+% Significado:
+% Ord|Ext = convocatoria [Ord]inaria, [Ext]raordinaria
+% yyyy = año de la convocatoria
+% A|B = opción o modelo
+% n = número de ejercicio
+% x.x = puntuación del ejercicio (siempre con un decimal, aunque sea entera)
+% A|G|C|P = bloque del temario ([A]lgebra, [G]eometría, [C]álculo, [P]robabilidad)
+\documentclass[spanish]{book}
+
+\usepackage{mypack}
+
+\graphicspath{{./img/}}
+
+\setcounter{topnumber}{4}
+\setcounter{bottomnumber}{4}
+\setcounter{totalnumber}{10}
+
+\begin{document}
+
+\title{\scshape Matemáticas II\\Apuntes} \author{} \date{Septiembre de 2018}
+\maketitle
+
+\tableofcontents
+
+% Ext-2019-A-1-2.5-A
+% [Sistemas]
+
+\begin{nexercise}
+  Dado el sistema de ecuaciones:
+   $\left\{\begin{array}{l}kx + (k+1)y + z = 0\\-x + ky - z = 0\\(k-1)x - y = -(k+1)\end{array}\right. $ se pide:
+   \begin{enumeratealpha}
+     \item (2 puntos) Discutir el sistema según los valores del parámetro real $k$.
+     \item (0.5 puntos) Resolver el sistema para $k=-1$.
+   \end{enumeratealpha}
+\end{nexercise}
+
+\begin{nsolution}
+  \begin{enumeratealpha}
+  \item Las matriz de coeficientes del sistema es:
+    \[ A = \matriz{ccc}{k&k+1&1\\-1&k&-1\\k-1&-1&0} \]
+    Los valores críticos para el tipo de sistema son los que anulan el determinante de $A$:
+
+    \[ \det(A) = \deter{ccc}{k&k+1&1\\-1&k&-1\\k-1&-1&0} = 2 - 2k^2 = -2(k - 1)(k + 1) \]
+    \[ \det(A) = 0 \iff -2(k - 1)(k + 1) = 0 \iff k \in \{-1, 1\} \]
+
+    Primer caso: $k \in \mathbb{R} - \{-1, 1\}$.
+    \vspace{.3cm}
+
+    En este caso, el determinante de la matriz de coeficientes es distinto de cero, por lo que su rango es igual a su tamaño, es decir, 3. Por otro lado, la matriz ampliada ha de tener también rango 3, porque solo tiene 3 filas, que son independientes (por serlo la parte correspondiente a la matriz de coeficientes). Dado que el número de incógnitas es también 3, tenemos que, según el Teorema de Rouché-Fröbenius (en adelante, TRF), el sistema es compatible determinado (tiene una única solución).
+    \vspace{.3cm}
+
+    Segundo caso: $k = -1$.
+    \vspace{.3cm}
+
+    La matriz ampliada, para $k = -1$, es la siguiente:
+    \begin{align*}
+      (A|B) &= \matriz{cccc}{-1&0&1&0\\-1&-1&-1&0\\-2&-1&0&0} \stackrel{(1)}{\sim} \matriz{cccc}{-1&0&1&0\\0&-1&-2&0\\0&-1&-2&0} \stackrel{(2)}{\sim} \matriz{cccc}{-1&0&1&0\\0&-1&-2&0\\0&0&0&0}
+    \end{align*}
+    (1) $F_2'=F_2-F_1;\ F_3'=F_3-2F_1$\\
+    (2) $F_3'=F_3-F_2$
+    \vspace{.3cm}
+
+    Hemos obtenido una matriz escalonada por filas con dos filas no nulas, que es equivalente a la matriz ampliada del sistema, luego $\rank(A|B)=2$. Además, puesto que las matrices son equivalentes por filas (no hemos realizado operaciones elementales sobre las columnas), la submatriz formada por las tres primeras columnas de la última matriz es equivalente a la matriz de coeficientes. Es decir, $\rank(A)=2$. Según TRF, por ser $\rank(A|B)=\rank(A)<n$, siendo $n$ el número de incógnitas, el sistema es compatible indeterminado uniparamétrico (tiene infinitas soluciones con un grado de libertad).
+    \vspace{.3cm}
+
+    Tercer caso: $k = 1$.
+    \vspace{.3cm}
+
+    La matriz ampliada, para $k = 1$, es la siguiente:
+    \begin{align*}
+      (A|B) &= \matriz{cccc}{1&2&1&0\\-1&1&-1&0\\0&-1&0&-2} \stackrel{(1)}{\sim} \matriz{cccc}{1&2&1&0\\0&3&0&0\\0&-1&0&-2} \stackrel{(2)}{\sim} \matriz{cccc}{1&2&1&0\\0&1&0&0\\0&0&0&-2}
+    \end{align*}
+    (1) $F_2'=F_2+F_1$\\
+    (2) $F_2'=\frac{1}{3}F_2;\ F_3'=F_3+\frac{1}{3}F_2$
+    \vspace{.3cm}
+
+    La matriz obtenida está escalonada por filas y es equivalente por filas a la matriz ampliada, $(A|B)$. En las tres primeras columnas vemos que $\rank(A)=2$ (porque tiene dos filas no nulas). En la matriz completa vemos que $\rank(A|B)=3$, porque las tres filas son no nulas. Según TRF, por ser $\rank(A)\neq\rank(A|B)$, el sistema es incompatible (no tiene solución).
+    \vspace{.3cm}
+
+    En resumen,
+    \begin{itemize}
+    \item si $k\in\mathbb{R}-\{-1,1\}$, el sistema es compatible determinado;
+    \item si $k=-1$, el sistema es compatible indeterminado con un grado de libertad;
+    \item si $k=1$, el sistema es incompatible.
+    \end{itemize}
+    \vspace{.3cm}
+    
+  \item Según acabamos de ver, para $k=-1$ el sistema es compatible indeterminado uniparamétrico. Además, hemos obtenido una matriz escalonada equivalente por filas a la matriz ampliada; el sistema correspondiente es, por tanto, equivalente al sistema original:
+
+    \begin{align*}
+      \matriz{cccc}{-1&0&1&0\\-1&-1&-1&0\\-2&-1&0&0} &\sim \matriz{cccc}{-1&0&1&0\\0&-1&-2&0\\0&0&0&0} \\
+       \left\{\begin{array}{l}-x+z=0\\-x-y-z=0\\-2x-y=0\end{array}\right. &\sim  \left\{\begin{array}{l}-x+z=0\\-y-2z=0\\0=0\end{array}\right. 
+    \end{align*}
+
+    Tomando como incógnitas principales $x$ e $y$, y como incógnita libre $z=\lambda$, resolvemos el sistema empezando en la última ecuación y por sustitución:
+
+    \begin{align*}
+       \left\{\begin{array}{l}-x+\lambda = 0\\-y-2\lambda=0\\z=\lambda\end{array}\right. \iff  \left\{\begin{array}{l}x=\lambda\\y=-2\lambda\\z=\lambda\end{array}\right. 
+    \end{align*}
+
+    El conjunto de soluciones es:
+
+    \[ S = \left\{\left(\lambda, -2\lambda, \lambda\right)|\lambda\in\mathbb{R}\right\} \]
+    
+
+  \end{enumeratealpha}
+\end{nsolution}
+
+% Ext-2019-A-2-2.5-A
+% [analisis][integrales][derivadas][regla-de-la-cadena][integracion-cambio-de-variable]
+
+\begin{nexercise}
+  \begin{enumeratealpha}
+  \item (1.25 puntos) Sean $f$ y $g$ dos funciones derivables de las que se conocen los siguientes datos:
+    \[ f(1) = 1,\ f'(1) = 2,\ g(1) = 3,\ g'(1) = 4 \]
+    Dada $h(x) = f\left((x+1)^2\right)$, use la regla de la cadena para calcular $h'(0)$. Dada $k(x) = \dfrac{f(x)}{g(x)}$, calcule $k'(1)$.
+  \item (1.25 puntos) Calcule la integral $\displaystyle\int \! (\sen x)^4(\cos x)^3 \, \mathrm{d}x$. (Se puede usar el cambio de variables $t = \sen x$).
+  \end{enumeratealpha}
+\end{nexercise}
+
+\begin{nsolution}
+  \begin{enumeratealpha}
+  \item Según la regla de la cadena:
+
+    \[ h'(x) = 2(x+1)f'\left((x+1)^2\right) \]
+
+    En $x = 0$, tenemos:
+
+    \[ h'(0) = 2(0+1)f'\left((0+1)^2\right) = 2 \cdot 1 \cdot f'(1) = 2 \cdot 1 \cdot 2 = 4 \]
+
+    Para hallar $k'(1)$ utilizamos la regla de derivación de un cociente:
+
+    \[ k'(x) = \dfrac{f'(x)g(x) - f(x)g'(x)}{\left[g(x)\right]^2} \]
+
+    En $x = 1$, tenemos:
+
+    \[ k'(1) = \dfrac{f'(1)g(1) - f(1)g'(1)}{\left[g(1)\right]^2} = \dfrac{2 \cdot 3 - 1 \cdot 4}{3^2} = \dfrac{2}{9} \]
+    
+  \item Utilizaremos el cambio de variable $t = \sen x$:
+
+    \[ t = \sen x \Rightarrow \mathrm{d}t = \cos x\mathrm{d}x \]
+
+    Además:
+
+    \[ \sen^2 x + \cos^2 x = 1 \iff \cos^2 x = 1 - \sen^2 x \]
+    Sustituyendo:
+
+    \begin{align*}
+      \displaystyle\int \! (\sen  x)^4(\cos x)^3 \, \mathrm{d}x &= \displaystyle\int \! (\sen x)^4(\cos x)^2\cos x \, \mathrm{d}x \\
+                                                                &= \displaystyle\int \! t^4\left(1-t^2\right) \, \mathrm{d}t \\
+                                                                &= \displaystyle\int \! \left(t^4 - t^6\right) \, \mathrm{d}t \\
+                                                                &= \displaystyle\int \! t^4 \, \mathrm{d}t - \displaystyle\int \! t^6 \, \mathrm{d}t \\
+                                                                &= \dfrac{t^5}{5} - \dfrac{t^7}{7} + C
+    \end{align*}
+
+    Finalmente, deshacemos el cambio de variable:
+
+    \[ \displaystyle\int \! (\sen x)^4(\cos x)^3 \, \mathrm{d}x = \dfrac{\sen^5x}{5} - \dfrac{\sen^7x}{7}+ C \]
+  \end{enumeratealpha}
+\end{nsolution}
+
+% Ext-2019-A-2-2.5-A
+% [geometria][plano-definido-por-tres-puntos][vectores-linealmente-dependientes][volumen-tetraedro]
+
+\begin{nexercise}
+  Dados los puntos $A(1,1,1)$, $B(1,3,-3)$ y $C(-3,-1,1)$, se pide:
+  \begin{enumeratealpha}
+    \item (1 punto) Determinar la ecuación del plano que contiene a los tres puntos.
+    \item (0.5 puntos) Obtener un punto $D$ (distinto e $A$, $B$ y $C$) tal que los vectores $\overrightarrow{AB}$, $\overrightarrow{AC}$ y $\overrightarrow{AD}$ sean linealmente dependientes.
+    \item (1 punto) Encontrar un punto $P$ del eje $OX$, de modo que el volumen del tetraedro de vértices $A$, $B$, $C$ y $P$ sea igual a 1.
+  \end{enumeratealpha}
+\end{nexercise}
+
+\begin{nsolution}
+  \begin{enumeratealpha}
+  \item Sea $\pi$ el plano determinado por los tres puntos dados. Los vectores que unen los puntos son vectores directores del plano. Calculemos dos de dichos vectores:
+
+    \begin{align*}
+      \overrightarrow{AB} &= B - A = (1, 3, -3) - (1, 1, 1) = (0, 2, -4) \\
+      \overrightarrow{AC} &= C - A = (-3, -1, 1) - (1, 1, 1) = (-4, -2, 0)
+    \end{align*}
+
+    Por lo tanto, la ecuación general de $\pi$ viene dada por:
+    \begin{align*}
+      \pi &\equiv \det\left(\overrightarrow{AX},\overrightarrow{AB},\overrightarrow{AC}\right) = 0 \\
+      \pi &\equiv \deter{ccc}{x-1&y-1&z-1\\0&2&-4\\-4&-2&0} = 0 \\
+      \pi &\equiv -8(x-1)+16(y-1)+8(z-1) = 0 \\
+      \pi &\equiv x-1-2(y-1)-(z-1) = 0 \\
+      \pi &\equiv x-2y-z+2 = 0
+    \end{align*}
+    
+  \item Para que los vectores $\overrightarrow{AB}$, $\overrightarrow{AC}$ y $\overrightarrow{AD}$ sean linealmente dependientes, dado que los dos primeros son vectores directores de $\pi$, y el origen del tercero es un punto de dicho plano, es necesario y suficiente que $D$ sean un punto del mismo plano $\pi$. Podemos tomar, por tanto, cualquier solución de la ecuación de $\pi$ obtenida en el apartado anterior. La ecuación tiene dos grados de libertad: podemos elegir libremente el valor de dos de las incógnitas. Tomando, por ejemplo, $x=y=0$, nos queda:
+
+    \[  \left\{\begin{array}{l}x-2y-z+2=0\\x=y=0\end{array}\right. \Rightarrow z=2 \]
+
+    Por lo tanto, el punto $D(0,0,2)$ es un punto de $\pi$, luego $\overrightarrow{AD}$ depende linealmente de $\overrightarrow{AB}$ y $\overrightarrow{AC}$.
+
+  \item Los puntos del eje $OX$ tienen la forma $P(a,0,0)$. El volumen del tetraedro de vértices $A$, $B$, $C$ y $P$, viene dado por:
+
+    \[ V = \dfrac{1}{6}\left|\det\left(\overrightarrow{AB},\overrightarrow{AC},\overrightarrow{AP}\right)\right| \stackrel{(1)}{=} \dfrac{1}{6}\left|\deter{ccc}{0&2&-4\\-4&-2&0\\a-1&-1&-1}\right| = \dfrac{1}{6}\cdot\left|(-16-8(a-1)-8)\right| \stackrel{(2)}{=} \dfrac{1}{6}\left|8a+16\right| \]
+
+    (1) Los vectores $\overrightarrow{AB}$ y $\overrightarrow{AC}$ los calculamos en el apartado a). El vector $\overrightarrow{AP}$ es $P-A=(a,0,0)-(1,1,1)$.\\
+    (2) El valor absoluto de un número es igual al de su opuesto: $\left|-8a-16\right| = \left|8a+16\right|$.
+    \vspace{.3cm}
+
+    Dado que el volumen del tetraedro tiene que ser 1, tenemos dos posibilidades:
+
+    \begin{align*}
+      V = 1 &\iff \dfrac{1}{6}\left|8a+16\right| = 1 \\
+            &\iff |8a+16|=6 \\
+            &\iff  \left\{\begin{array}{l}8a+16=6 \iff 8a = -10 \iff a = -\dfrac{5}{4}\\8a+16=-6 \iff 8a =-22 \iff a = -\dfrac{11}{4}\end{array}\right. 
+    \end{align*}
+
+    Por lo tanto, hay dos puntos en el eje $OX$ que determinan, junto con $A$, $B$ y $C$, un tetraedro de volumen 1:
+
+    \[ P_1\left(-\dfrac{5}{4},0,0\right),\ P_2\left(-\dfrac{11}{4},0,0\right) \]
+  \end{enumeratealpha}
+\end{nsolution}
+
+% Ext-2019-A-2-2.5-A
+% [probabilidad][binomial][dist-normal]
+
+\begin{nexercise}
+  Una empresa ha llevado a cabo un proceso de selección de personal.
+  \begin{enumeratealpha}
+    \item (1.25 puntos) Se sabe que el 40\% del total de aspirantes han sido seleccionados en el proceso. Si entre los aspirantes había un grupo de 8 amigos, calcule la probabilidad de que al menos 2 de ellos hayan sido seleccionados.
+    \item (1.25 puntos) Las puntuaciones obtenidas por los aspirantes en el proceso de selección siguen una distribución normal, $X$, de media $5.6$ y desviación típica $\sigma$. Sabiendo que la probabilidad de obtener una puntuación $X \leq 8.2$ es $0.67$, calcule $\sigma$.
+  \end{enumeratealpha}
+\end{nexercise}
+
+
+\begin{nsolution}
+  \begin{enumeratealpha}
+    \item Realizamos 8 observaciones (los 8 amigos) independientes de una variable aleatoria con dos posibles valores (seleccionado, no seleccionado), en la que la probabilidad del \emph{acierto} (que sea seleccionado) en cada observación es siempre la misma: $p=40\%=0.4$. Se trata, por tanto, de una variable binomial, $Y$, de parámetros, $n=8$ y $p=0.4$.
+
+      \[ Y = B(8, 0.4)  \]
+
+      El suceso contrario al que nos interesa (que al menos dos de ellos sean seleccionados, es decir, que haya al menos dos aciertos) es que sean seleccionados menos de dos:
+
+      \[ P(Y \geq 2) = 1 - P(Y < 2) = 1 - \left[P(Y = 0) + P(Y = 1)\right] \]
+
+      La probabilidad de $k$ aciertos viene dada por:
+
+      \[ P(Y = k) = \binom{n}{k} p^k(1-p)^{1-k} \]
+
+      Por lo tanto,
+
+      \begin{align*}
+        P(Y \geq 2) &= 1 - \left[P(Y = 0) + P(Y = 1)\right] \\
+                    &= 1 - \left[\binom{8}{0} \cdot 0.4^0 \cdot 0.6^8 + \binom{8}{1} \cdot 0.4^1 \cdot 0.6^7\right] \\
+                    &= 1 - 0.1064 \\
+                    &= 0.8936
+      \end{align*}
+
+      La probabilidad de que al menos dos de los 8 amigos hayan sido seleccionados es del $89.36\%$.
+      
+    \item Buscamos en la tabla de la distribución normal estándar el valor cuya probabilidad acumulada es $0.67$:
+
+      \[ P(Z \leq z_0) = 0.67 \iff z_0 = 0.44 \]
+
+      Para encontrar el valor de la variable normal $X$ que acumula esa misma probabilidad, tendríamos que utilizar la relación de tipificación:
+
+      \[ Z = \dfrac{X - \mu}{\sigma} \]
+
+      Puesto que sabemos que el valor de $X$ que acumula esa probabilidad es $x_0=8.2$, y que la media de $X$ es $\mu=5.6$, sustituyendo en la relación anterior, podemos despejar la desviación típica $\sigma$:
+
+      \begin{align*}
+        z_0 = \dfrac{x_0 - \mu}{\sigma} &\iff 0.44 = \dfrac{8.2 - 5.6}{\sigma} \\
+&\iff 0.44\sigma = 2.6 \\
+&\iff \sigma = \dfrac{2.6}{0.44} \\
+&\iff \sigma = 5.91
+      \end{align*}
+      
+      La desviación típica de $X$ es $\sigma=5.91$.
+  \end{enumeratealpha}
+\end{nsolution}
+
+\end{document}
