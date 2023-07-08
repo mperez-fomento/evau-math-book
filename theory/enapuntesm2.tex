@@ -3109,7 +3109,7 @@ componentes son (en este orden) $v_1$, $v_2$, $v_3$ se representa así:
 \end{definition}
 
 \begin{definition}[$\mathbb{R}^3$]Al conjunto de todos los vectores libres se le
-llama \textbf{espacio vectorial} $\mathbb{R}^3$. Es decir,
+llama $\mathbb{R}^3$. Es decir,
 
 \begin{center}
   $\mathbb{R}^3 = \{ ( a, b, c ) / a, b, c \in \mathbb{R} \}$
@@ -3121,8 +3121,6 @@ conjunto de todos los pares ordenados cuyo primer elemento es de $A$ y el
 segundo de $B$. Se representa por $A \times B$. La definición de
 $\mathbb{R}^3$ coincide con la del producto cartesiano $\mathbb{R} \times
 \mathbb{R} \times \mathbb{R}$, de donde deriva el símbolo $\mathbb{R}^3$.\end{remark}
-
-\begin{remark}El concepto de espacio vectorial es más general que este. En un anexo puede encontrarse una definición de espacio vectorial con toda la generalidad posible. Según dicha definición, existen otros espacios vectoriales formados por vectores que no tienen nada que ver con los vectores libres que acabamos de definir. No obstante, los vectores libres tienen un lugar especialmente importante entre los espacios vectoriales (también puede encontrarse la razón de esto en el anexo).\end{remark}
 
 \begin{remark}Hay dos formas de definir los vectores libres, una algebraica y otra
 geométrica. La que hemos dado aquí es la definición algebraica (los vectores
@@ -3160,7 +3158,7 @@ conjunto infinito de segmentos orientados), pero se suele representar un
 vector libre por uno de sus representantes (es decir, por algún vector fijo
 que pertenezca a él).\end{remark}
 
-\begin{remark}Los vectores aquí definidos son los vectores \emph{tridimensionales}. También existe un espacio vectorial de vectores de dos dimensiones (con dos componentes), $\mathbb{R}^2$, que se utilizan en geometría plana, y espacios vectoriales de vectores de más dimensiones, $\mathbb{R}^4$, $\mathbb{R}^5$,... formados por vectores con cuatro, cinco, o más componentes.\end{remark}
+\begin{remark}Los vectores aquí definidos son los vectores \emph{tridimensionales}. También existe un espacio de vectores de dos dimensiones (con dos componentes), $\mathbb{R}^2$, que se utilizan en geometría plana, y espacios de vectores de más dimensiones, $\mathbb{R}^4$, $\mathbb{R}^5$,... formados por vectores con cuatro, cinco, o más componentes.\end{remark}
 
 
 
@@ -3252,22 +3250,21 @@ contrario al de $\vec{v}$ si $\lambda < 0$.\end{remark}
 
 \begin{definition}[Dirección de un vector] Un vector $\vec{u}$ tiene la misma dirección que otro vctor $\vec{v}$ si y solo si existe algún $\lambda$ tal que $\vec{u} = \lambda \vec{v}$, es decir, si y solo si sus componentes son proporcionales a las de $\vec{v}$, o es nulo.\end{definition}
 
-\begin{remark}Cuando más adelante estudiemos el concepto de dependencia lineal, veremos que esta definición podría resumirse diciendo que dos vectores tienen la misma dirección si son linealmente dependientes.\end{remark}
+\begin{remark}Cuando más adelante estudiemos el concepto de dependencia lineal de vectores libres, veremos que esta definición podría resumirse diciendo que dos vectores tienen la misma dirección si son linealmente dependientes.\end{remark}
 
-\newpage\section{Dependencia lineal de vectores}
+\newpage\section{El espacio vectorial $\mathbb{R}^3$}
 
-\begin{definition}[Combinaci\'on lineal] Se dice que un vector $\vec{w}$ es una
-  combinación lineal de un conjunto de vectores $\{ \vec{v}_1, \ldots,
-  \vec{v}_k \}$ si existe un conjunto de escalares $\{ \lambda_1, \ldots,
-  \lambda_k \}$ tales que:
-  \begin{center}
-    $\vec{w} = \lambda_1 \vec{v}_1 + \ldots + \lambda_k \vec{v}_k =
-    \overset{k}{\underset{i = 1}{\sum}} \lambda_i \vec{v}_i$
-  \end{center}
-  Si un vector es una combinación lineal de un conjunto de vectores, también
-  se dice que depende linealmente de ellos. A los escalares $\lambda_1, \ldots, \lambda_k$ se les llama coeficientes de
-  la combinación lineal.
-\end{definition}
+\begin{theorem}
+  [El espacio vectorial $\mathbb{R}^3$] El conjunto de todos los vectores libres de tres componentes, junto con las operaciones \emph{suma} y \emph{producto por un escalar} definidas anteriormente, forman un espacio vectorial de dimensión $3$.
+\end{theorem}
+
+\begin{remark}
+  En general, el conjunto de todos los vectores de $n$ componentes, junto con las operaciones \emph{suma} y \emph{producto por un escalar} definidas de manera análoga, forman un espacio vectorial de dimensión $n$.
+\end{remark}
+
+\begin{remark}
+  Los conceptos de \emph{combinación lineal}, \emph{dependencia lineal}, \emph{bases}, \emph{coordenadas}, estudiados anteriormente de manera general para cualquier espacio vectorial, pueden aplicarse, por tanto, a los vectores libres del espacio tridimensional, como puede verse en los siguientes ejemplos.
+\end{remark}
 
 \begin{example}
   El vector $(-6,1,2)$ es una combinación lineal de los

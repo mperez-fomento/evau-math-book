@@ -953,6 +953,53 @@ límites laterales en cada extremo, y se comparan entre sí y con el valor de la f
 \caption{Teorema de Bolzano}
 \end{figure}
 
+\begin{remark}
+  El teorema de Bolzano puede utilizarse para obtener, de manera aproximada mediante una acotación, soluciones de ecuaciones. En primer lugar, aclaremos qué significa aproximar una solución mediante una acotación (o, simplemente, acotar una solución de una ecuación). La ecuación $x^{3}+x+1=0$ tiene una solución, pero no es fácil calcularla de manera exacta, porque no es ni $1$ ni $-1$. Acotar la solución sería decir, por ejemplo, que la solución está en el intervalo $(-1, 0)$. Se habla de acotar, porque estamos estableciendo una cota inferior ($-1$) y una cota superior ($0$). Sabemos que la solución es mayor a la cota inferior y menor que la cota superior. Una acotación mejor sería $(-0.7, -0.6)$, porque esa acotación ya nos permite decir que la solución empieza por $-0.6$. Incluso mejor, sería la acotación $(-0.6824, -0.6823)$, que nos permite asegurar que la solución empieza por $-0.6823$. Esta última acotación nos permite dar con exactitud hasta cuatro cifras decimales de la solución, porque la amplitud del intervalo de acotación es $0.0001$. Por lo tanto, la precisión de la acotación, y, por tanto, de la aproximación, es igual a la amplitud del intervalo que damos como acotación.
+
+  Vamos a ver un método (no el mejor, pero sí el más sencillo) que nos va a permitir obtener acotaciones de una solución de una ecuación, con tanta precisión como queramos. Para ello, aplicaremos el teorema de Bolzano. Veámoslo con un ejemplo
+
+  Resolver la ecuación:
+  $$x = \cos x$$
+
+  En primer lugar, vamos a definir una función cuyas raíces sean las soluciones de la ecuación anterior:
+
+  \[ f(x) = x - \cos x\]
+
+  Está claro que si $f(x) = 0$, entonces (y sólo entonces), $x = \cos x$. Por tanto, resolver la ecuación equivale a encontrar valores de $x$ para los que $f(x)=0$.
+
+  La función es continua en $\mathbb{R}$, y, por lo tanto, en cualquier intervalo $[a,b]$ de $\mathbb{R}$. Vamos a buscar un intervalo tal que $f(a)\cdot f(b) < 0$, es decir, tal que el signo de $f(a)$ y el signo de $f(b)$ sean distintos:
+
+  \[ f(0) = 0 - \cos 0 = -1 < 0\]
+  \[ f(\pi/2) = \dfrac{\pi}{2} - \cos \dfrac{\pi}{2} = \dfrac{\pi}{2} > 0\]
+
+  Por lo tanto, según el teorema de Bolzano, por ser $f$ continua en $\left[0,\dfrac{\pi}{2}\right]$, y tener distinto signo en los extremos de dicho intervalo, sabemos que ha de existir $c \in \left(0,\dfrac{\pi}{2}\right)$ tal que $f(c) = 0$, es decir, tal que $c = \cos c$.
+
+  Tenemos una primera acotación de la solución:
+
+  \[c \in \left(0, \dfrac{\pi}{2}\right) \approx (0, 1.5708)\]
+
+  No es una aproximación muy precisa. No nos permite dar ninguna cifra de la solución con seguridad. La solución podría empezar por $0$ o por $1$. Vamos a mejorar la acotación. Para ello, tomaremos el punto medio del intervalo anterior, y calcularemos el signo de $f$ en dicho punto:
+
+  \[\dfrac{0 + \frac{\pi}{2}}{2} = \dfrac{\pi}{4} \approx 0.7854\]
+  \[f\left(\dfrac{\pi}{4}\right) = \dfrac{\pi}{4} - \cos \dfrac{\pi}{4} \approx 0.0783 > 0\]
+
+  Aplicando ahora el teorema de Bolzano al intervalo $\left[0,\dfrac{\pi}{4}\right]=[0,0.7854]$, puesto que $f(0)<0$ y $f(0.7854)>0$, sabemos que debe haber un punto $c$ en el intervalo $(0, 0.7854)$ tal que $f(c)  = 0$. Ya sabemos que la solución empieza por $0$, pero la precisión es todavía escasa. Vamos a continuar mejorando la acotación, tomando en cada paso el punto medio del intervalo anterior, y quedándonos con el intervalo en el que los signos de $f$ en los extremos sean distintos:
+
+   \[f\left(\dfrac{\pi}{8}\right) = \dfrac{\pi}{8} - \cos \dfrac{\pi}{8} \approx -0.5312 < 0\]
+   \[c\in\left(\dfrac{\pi}{8},\dfrac{\pi}{4}\right) \approx (0.3927, 0.7854)\]
+
+  \[f\left(\dfrac{3\pi}{16}\right) = \dfrac{3\pi}{16} - \cos \dfrac{3\pi}{16} = -0.2424 < 0\]
+   \[c\in\left(\dfrac{3\pi}{16},\dfrac{\pi}{4}\right) \approx (0.5890, 0.7854)\]
+
+  \[f\left(\dfrac{7\pi}{32}\right) = \dfrac{7\pi}{32} - \cos \dfrac{7\pi}{32} = -0.0857 < 0\]
+   \[c\in\left(\dfrac{7\pi}{32},\dfrac{\pi}{4}\right) \approx (0.6872, 0.7854)\]
+
+  \[f\left(\dfrac{15\pi}{64}\right) = \dfrac{15\pi}{64} - \cos \dfrac{15\pi}{64} = -0.0046 < 0\]
+   \[c\in\left(\dfrac{15\pi}{64},\dfrac{\pi}{4}\right) \approx (0.7363, 0.7854)\]
+
+   Este último intervalo nos permite asegurar que la solución empieza por $0.7$. La precisión es todavía escasa (casi cinco centésimas), pero al menos ya podemos dar las décimas con seguridad. Podríamos seguir dividiendo el intervalo por la mitad todo lo que queramos, obteniendo, por tanto, tantas cifras exactas de la solución como queramos. Como se ve, no es un método muy rápido, porque hay que repetirlo muchas veces para obtener cada cifra decimal sucesiva. Se dice que el método \emph{converge} lentamente hacia la solución. Existen métodos más rápidos (pero basados en el mismo principio, el teorema de Bolzano). Por cierto la solución es $0.7390849...$.
+\end{remark}
+
 \begin{theorem}
   [Weierstrass] Si una función $f$ es continua en $[a,b]$, entonces existen $c_1\in[a,b]$ y $c_2\in[a,b]$ tales que $f(c_1)\leq f(x)\leq f(c_2)$ para todo $x\in[a,b]$.
 \end{theorem}
@@ -962,7 +1009,7 @@ límites laterales en cada extremo, y se comparan entre sí y con el valor de la f
 \end{remark}
 
 \begin{theorem}
-  [Valores intermedios] Si una función $f$ es continua en $[a,b]$, entonces, para todo $k\in I$, existe algún $c\in(a,b)$, tal que $f(c)=k$, siendo $I=\left[f(a),f(b)\right]$, si $f(a)\leq f(b)$, o bien, $I=\left[f(b),f(a)\right]$, si $f(b)\leq f(a)$.
+  [Valores intermedios (Darboux)] Si una función $f$ es continua en $[a,b]$, entonces, para todo $k\in I$, existe algún $c\in(a,b)$, tal que $f(c)=k$, siendo $I=\left[f(a),f(b)\right]$, si $f(a)\leq f(b)$, o bien, $I=\left[f(b),f(a)\right]$, si $f(b)\leq f(a)$.
 \end{theorem}
 
 \begin{remark}
@@ -2312,6 +2359,133 @@ Dado que la recta se encuentra por encima de la parábola, el área vendrá dada po
 \[A = \int_1^5\![g(x)-f(x)]\,\mathrm{d}x = \int_1^5\!(2x-5-(x^2-4x))\,\mathrm{d}x = \int_1^5\!(-x^2+6x-5)\,\mathrm{d}x = \left[\dfrac{-x^3}{3}+3x^2-5x\right]_1^5 = \dfrac{32}{3}\]
 \end{example}
 
+\newpage\section{Cálculo de volúmenes mediante integrales}
+
+\begin{theorem}
+  [Secciones transversales] Sea $A(x)$ una función cuyo valor en $x=x_0$ es el área de una sección transversal de un sólido por un plano perpendicular al eje $OX$ en $x=x_0$. Si $A(x)$ es integrable, el volumen de dicho sólido vendrá dado por:
+\[V=\int_a^b\!A(x)\,\mathrm{d}x\]
+siendo $a$ la abscisa del punto del sólido situado más a la izquierda, y $b$ la del punto situado más a la derecha.
+\end{theorem}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=10cm]{seccionestransversales_cropped.pdf}
+  \caption{Cálculo de volúmenes por secciones transversales.}
+\end{figure}
+
+\begin{example}
+  Hallar el volumen común a dos esferas de igual radio, $r$, si el centro de cada una se encuentra en la superficie de la otra.
+
+  Situando el eje de $OX$ sobre la recta que une ambos centros, y el origen de coordenadas en el punto medio entre ellos, es claro que todas las secciones transversales del volumen pedido son círculos cuyo centro está en el eje $OX$, y cuyo radio, $R(x)$, verifica la siguiente ecuación (la distancia entre los centros es $r$):
+\[\left(\dfrac{r}{2}+x\right)^2+\left(R(x)\right)^2=r^2 \iff R(x)=\sqrt{r^2-\left(\dfrac{r}{2}+x\right)^2}\]
+
+El área de las secciones transversales vendrá dada por:
+\[A(x)=\pi \left(R(x)\right)^2=\pi\left[r^2-\left(\dfrac{r}{2}+x\right)^2\right]\]
+
+El volumen pedido será:
+\[\int_{-r/2}^{r/2}A(x)\,\mathrm{d}x = \int_{-r/2}^{r/2}\!\pi\left[r^2-\left(\dfrac{r}{2}+x\right)^2\right]\,\mathrm{d}x = \left[\pi\left(r^2x-\dfrac{1}{3}\left(\dfrac{r}{2}+x\right)^3\right)\right]_{-r/2}^{r/2} = \dfrac{2\pi r^3}{3}\]
+\end{example}
+
+\begin{definition}
+  [Sólido de revolución] Es un cuerpo geométrico generado al girar una región plana alrededor de un eje.
+\end{definition}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=10cm]{solidorevolucion_cropped.pdf}
+  \caption{Sólido de revolución}
+\end{figure}
+
+\begin{example}
+  Un cono es un sólido de revolución generado al girar un triángulo rectángulo alrededor de uno de sus catetos.
+
+  Un cilindro es un sólido de revolución generado al girar un rectángulo alrededor de uno de sus lados.
+
+  Se obtiene también un sólido de revolución al girar alrededor del eje de abscisas la región plana delimitada por la gráfica de una función $f$, el eje de absicsas y las rectas $x=a$ y $x=b$.
+\end{example}
+
+\begin{theorem}
+  [Cálculo de volúmenes: método del disco] El volumen del sólido de revolución obtenido al girar en torno al eje $OX$ la región plana deliimitada por la gráfica de la función $f$, el eje de abscisas y las rectas $x=1$, $x=b$, viene dado por:
+\[V=\int_a^b\!\pi\left(f(x)\right)^2\,\mathrm{d}x\]
+\end{theorem}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=18cm]{disco_cropped.pdf}
+  \caption{Cálculo de volúmenes: método del disco}
+\end{figure}
+
+\begin{remark}
+  La fórmula anterior se deduce dividiendo el volumen en cilindros de altura $\mathrm{d}x$, con el eje en el eje de abscisas, de modo que su radio es $f(x)$.
+\end{remark}
+
+\begin{remark}
+  También se puede aplicar al cálculo de volúmenes engendrados al girar un recinto plano en torno al eje vertical: habría que utilizar la función inversa de $f$, de modo que $x=f^{-1}(y)$, y realizar la integral en la variable $y$, entre $f^{-1}(a)$ y $f^{-1}(b)$.
+\end{remark}
+
+\begin{remark}
+  Para calcular el volumen generado por un recinto delimitado por dos curvas, habría que restar el volumen generado por la curva inferior del volumen generado por la curva superior, resultando:
+\[V=\int_a^b\!\pi\left[\left(f(x)\right)^2-\left(g(x)\right)^2\right]\,\mathrm{d}x\]
+\end{remark}
+
+\begin{example}
+  Hallar el volumen del sólido de revolución obtenido al rotar sobre el eje OX la región limitada por la curva $y=x^2$ y las rectas $y=\frac{x}{2}$, $x=1$ y $x=2$.
+
+  \begin{center}\includegraphics[width=8cm]{discoejemplo_cropped.pdf}\end{center}
+
+  Tendremos que restar al volumen generado por la parábola, el ``hueco'' interior generado por la recta $y=x/2$:
+
+  \begin{center}\includegraphics[width=8cm]{discoejemplo2_cropped.pdf}\end{center}
+
+  Aplicaremos el método del disco:
+
+  \begin{eqnarray*}V & = & \int_1^2\pi\left[f^2(x)-g^2(x)\right] dx \\
+    & = & \int_1^2\pi\left[(x^2)^2-\left(\dfrac{x}{2}\right)^2\right] dx \\
+    & = & \pi\left[\dfrac{x^5}{5}-\dfrac{x^3}{12}\right]_1^2 \\
+    & = & \pi\left(\dfrac{32}{5}-\dfrac{2}{3}-\dfrac{1}{5}+\dfrac{1}{12}\right) \\
+    & = & \dfrac{337\pi}{60}
+  \end{eqnarray*}
+\end{example}
+
+\begin{theorem}
+  [Cálculo de volúmenes: método de la cáscara] El volumen del sólido de revolución generado al girar en torno al eje vertical el recinto delimitado por la gráfica de la función $f$, el eje horizontal y las rectas $x=a\geq0$, $x=b>a$, viene dado por:
+\[V=\int_a^b\!2\pi x|f(x)|\,\mathrm{d}x\]
+\end{theorem}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=18cm]{cascara_cropped.pdf}
+  \caption{Cálculo de volúmenes: método de la cáscara}
+\end{figure}
+
+\begin{remark}
+  La fórmula anterior se obtiene dividiendo el volumen en ``cáscaras'' cilíndricas de grosor $\mathrm{d}x$, cuyo eje es el eje vertical, de modo que su radio interior es $x$, su radio exterior es $x+\mathrm{d}x$, y su altura es $f(x)$.
+\end{remark}
+
+\begin{remark}
+  Al igual que en el método del disco, es posible aplicar la fórmula a volúmenes engendrados girando en torno al eje horizontal, intercambiando $x$ por $y$, y utilizando la función inversa $x=f^{-1}(y)$. También se puede aplicar a recintos delimitados por dos funciones, utilizando la diferencia de ambas.
+\end{remark}
+
+\begin{example}
+  Hallar el volumen generado al rotar alrededor del eje OY la región comprendida entre la parábola $y=x^2-4x$, la recta $y=x+2$ y las rectas $x=1$ y $x=3$.
+
+  \begin{center}
+    \includegraphics[width=8cm]{cascaraejemplo1_cropped.pdf}\includegraphics[width=8cm]{cascaraejemplo2_cropped.pdf}
+  \end{center}
+
+  Utilizaremos el método de la cáscara. Si llamamos, $g(x)=x^2-4x$ y $f(x)=x+2$, tenemos que:
+
+  \begin{eqnarray*} V & = & \int_1^3 2\pi x\left[f(x)-g(x)\right] dx \\
+    & = & \int_1^3 2\pi x\left[x+2-(x^2-4x)\right] dx \\
+    & = & \int_1^3 2\pi (-x^3+5x^2+2x) dx\\
+    & = & 2\pi\left[-\dfrac{x^4}{4}+\dfrac{5x^3}{3}+x^2\right]_1^3\\
+    & = & \dfrac{188\pi}{3}
+  \end{eqnarray*}
+
+\end{example}
+
+
+
 \part{Álgebra Lineal}
 
 \chapter{Matrices}
@@ -2675,6 +2849,10 @@ $$- 2 A = - 2 \left(\begin{array}{ccc}
   \end{eqnarray*}
         
 \end{example}
+
+\begin{remark}
+  El conjunto de todas las matrices de un tamaño dado, junto con las operaciones \emph{suma} y \emph{producto por un escalar} expuestas antes, tiene una estructura que se llama \emph{espacio vectorial}. Más adelante veremos este concepto.
+\end{remark}
 
 {}
 
@@ -5446,6 +5624,487 @@ Es decir,
 
 \chapter{Vectores}
 
+\newpage\section{Espacios vectoriales}
+
+\begin{definition}[\textbf{Espacio vectorial}]Sea un conjunto $V$, a cuyos elementos
+llamaremos {\tmstrong{vectores}}, y sea un cuerpo $K$, a cuyos elementos
+llamaremos escalares. Se dice que $V$ es un {\tmstrong{espacio vectorial}}
+sobre $K$ si existen dos operaciones, llamadas ``suma'' y ``producto por
+escalar'', tales que:
+\begin{enumeratealpha}
+  \item La ``suma de vectores'' es una operación interna ($+ : V \times V
+  \rightarrow V$) que cumple:
+
+  \begin{itemize}
+    \item Propiedad asociativa: $\forall \vec{u}, \vec{v}, \vec{w} \in V,
+    \vec{u} + ( \vec{v} + \vec{w} ) = ( \vec{u} + \vec{v} ) + \vec{w}$
+
+    \item Propiedad conmutativa: $\forall \vec{u}, \vec{v} \in V, \vec{u} +
+    \vec{v} = \vec{v} + \vec{u}$
+
+    \item Elemento neutro (vector nulo): $\exists \overrightarrow{o} \in V /
+    \forall \overrightarrow{u} \in V, \vec{u} + \vec{o} = \vec{u}$
+
+    \item Elemento simétrico (opuesto): $\forall \vec{u} \in V, \exists -
+    \vec{u} / \vec{u} + ( - \vec{u} ) = \vec{o}$
+  \end{itemize}
+
+  \item El ``producto por escalar'' es una operación externa ($\cdot : V \times
+  K \rightarrow V$) que cumple:
+
+  \begin{itemize}
+    \item Propiedad distributiva: $\forall \vec{u}, \vec{v} \in V, \lambda,
+    \mu \in K, \left\{\begin{array}{l}
+      \lambda ( \vec{u} + \vec{v} ) = \lambda \vec{u} + \lambda \vec{v}\\
+      ( \lambda + \mu ) \vec{u} = \lambda \vec{u} + \mu \vec{u}
+    \end{array}\right.$
+
+    \item Propiedad asociativa: $\forall \vec{u} \in V, \lambda, \mu \in K,
+    \lambda ( \mu \vec{u} ) = ( \lambda \mu ) \vec{u}$
+
+    \item Elemento neutro: $\forall \vec{u} \in V, 1 \vec{u} = \vec{u}$
+  \end{itemize}
+\end{enumeratealpha}
+\end{definition}
+
+\begin{remark}Recuérdese que el único cuerpo que conocemos es $\mathbb{R}$, así que,
+para nosotros, $K \equiv \mathbb{R}$. El conjunto de los números complejos
+$\mathbb{C}$ también es un cuerpo.\end{remark}
+
+\begin{remark}El símbolo utilizado para representar la ``suma de vectores'' ($+$) es el
+mismo que hemos utilizado siempre para la ``suma de escalares''. Sin embargo, se
+trata de dos operaciones de distinta naturaleza, que en la mayoría de los
+casos se efectúan de maneras muy distintas. Siempre debemos prestar atención a
+los objetos que sumamos (si son vectores o escalares). Una expresión como
+$\vec{v} + \lambda$ no tiene sentido, porque en ningún momento hemos definido
+una operación ``suma de vector y escalar''.\end{remark}
+
+\begin{theorem}
+  [\textbf{Propiedades básicas}]En un espacio vectorial $V$ sobre un cuerpo
+  $K$, para cualesquiera que sean $\vec{u}, \vec{v} \in V$ y $\lambda, \mu \in
+  K$, se verifica que:
+  \begin{enumeratealpha}
+    \item $\lambda \vec{o} = \vec{o}$
+
+    \item $0 \vec{u} = \vec{o}$
+
+    \item $\lambda \vec{u} = \vec{o} \Rightarrow ( \lambda = 0 ó \vec{u} =
+    \vec{o} )$
+
+    \item $( \lambda \vec{u} = \mu \vec{u}$ y $\vec{u} \neq \vec{o} )
+    \Rightarrow \lambda = \mu$
+
+    \item $( \lambda \vec{u} = \lambda \vec{v}$ y $\lambda \neq 0 )
+    \Rightarrow \vec{u} = \vec{v}$
+
+    \item $( - \lambda ) \vec{u} = \lambda ( - \vec{u} ) = - \lambda \vec{u}$
+  \end{enumeratealpha}
+\end{theorem}
+
+\begin{remark}Estas propiedades son consecuencias directas de las propiedades de las
+operaciones que constituyen el espacio vectorial y se cumplen por tanto para
+todo espacio vectorial, pudiéndose demostrar (es un buen ejercicio) en
+general, sin necesidad de definir qué significan (o cómo se efectúan) las
+operaciones + (suma) y $\cdot$ (producto por un escalar).\end{remark}
+
+\begin{example}
+  El conjunto $\mathbb{R} \times \mathbb{R}=\mathbb{R}^2 = \{ ( a, b ) / a,
+  b \in \mathbb{R} \}$ es un espacio vectorial sobre $\mathbb{R}$, si en él
+  definimos la operación suma (+) como $( a, b ) + ( c, d ) = ( a + b, c + d
+  )$, y la operación producto por escalar como $k ( a, b ) = ( ka, kb )$, ya
+  que estas operaciones cumplen las propiedades de la definición.
+\end{example}
+
+\begin{example}
+El conjunto de todas las matrices reales de dimensión $m \times n$ (que
+se representa por $\mathcal{M}_{m \times n}$) es un espacio vectorial, ya que
+las operaciones suma y producto por escalar cumplen las propiedades de la
+definición.
+\end{example}
+
+\begin{example}
+  El conjunto de todos los polinomios $P ( x )$ es un espacio vectorial sobre
+  $\mathbb{R}$ respecto de las operaciones usuales de suma de polinomios y
+  producto de un número por un polinomio.
+\end{example}
+
+\newpage\section{Dependencia lineal}
+
+\begin{definition}
+  [\textbf{Combinación lineal}]Se dice que un vector $\vec{w}$ es una
+  combinación lineal de un conjunto de vectores $\{ \vec{v}_1, \ldots,
+  \vec{v}_k \}$ si existe un conjunto de escalares $\{ \lambda_1, \ldots,
+  \lambda_k \}$ tales que:
+  \begin{center}
+    $\vec{w} = \lambda_1 \vec{v}_1 + \ldots + \lambda_k \vec{v}_k =
+    \overset{k}{\underset{i = 1}{\sum}} \lambda_i \vec{v}_i$
+  \end{center}
+  Si un vector es una combinación lineal de un conjunto de vectores, también
+  se dice que depende linealmente de ellos. A los escalares $\lambda_1, \ldots, \lambda_k$ se les llama coeficientes de
+  la combinación lineal.
+\end{definition}
+
+\begin{example}
+  El vector $( - 6, 1 )$ de $\mathbb{R}^2$ es una combinación lineal de los
+  vectores de $\mathbb{R}^2$ $\{ ( 1, - 1 ), ( 2, 0 ), ( - 2, 1 ) \}$, ya que
+  \begin{center}
+    $2 ( 1, - 1 ) - ( 2, 0 ) + 3 ( - 2, 1 ) = ( - 6, 1 )$
+  \end{center}
+Los coeficientes de la combinación lineal anterior serían: $2,
+  - 1, 3$.
+\end{example}
+
+\begin{definition}
+  [\textbf{Dependencia lineal}]Se dice que un conjunto de vectores es
+  linealmente dependiente (o ligado) si al menos uno de ellos es una
+  combinación lineal de los demás. En caso contrario, se dice que el conjunto
+  de vectores es linealmente independiente (o libre).
+\end{definition}
+
+\begin{remark}Se puede demostrar que un conjunto de vectores $\{ \vec{v}_1, \ldots,
+\vec{v}_k \}$ es linealmente independiente si y solo si
+$\overset{k}{\underset{i = 1}{\sum}} \lambda_i \vec{v}_i = \vec{o} \Rightarrow
+\lambda_i = 0, \forall i \in \{ 1, \ldots, k \}$, es decir, si la única
+combinación lineal que da como resultado el vector nulo es la que tiene todos
+los coeficientes nulos.\end{remark}
+
+\begin{remark}Un conjunto de vectores que incluya al vector nulo siempre es ligado (ya
+que el vector nulo siempre se puede obtener como combinación lineal de los
+demás).\end{remark}
+
+\begin{remark}Un conjunto de un único vector se considera siempre libre, salvo que
+dicho vector sea $\vec{o}$.\end{remark}
+
+\begin{remark}Un conjunto de dos vectores no nulos $\{ \vec{u}, \vec{w} \}$ es ligado
+si y solo si los dos vectores son proporcionales, ya que si uno de los dos se
+puede obtener como combinación lineal del otro, es que existe algún escalar
+$\lambda$ tal que $\vec{u} = \lambda \vec{w}$ (esto es lo mismo que decir que
+$\vec{u}$ y $\vec{w}$ son proporcionales).\end{remark}
+
+\begin{remark}Se puede demostrar que si un conjunto de vectores $\{ \vec{v}_1, \ldots,
+\vec{v}_k \}$ es linealmente independiente, entonces no existen dos
+combinaciones lineales distintas de dichos vectores que den el mismo
+resultado. La demostración (por reducción al absurdo) se deja como
+ejercicio.\end{remark}
+
+\begin{example}
+  El conjunto de vectores de $\mathbb{R}^2$, $\{ ( 1, - 1 ), ( - 1, 1 ), ( 2,
+  - 2 ) \}$, es linealmente dependiente porque al menos uno de ellos se puede
+  obtener como combinación lineal de los otros dos, puesto que se tiene
+  \begin{center}
+    $( 2, - 2 ) = 2 ( 1, - 1 ) - ( - 1, 1 )$
+  \end{center}
+En este caso, cualquiera de los tres vectores se puede obtener
+  como combinación lineal de los otros dos. Pero, basta con uno de ellos para
+  que el conjunto sea ligado. ¿Hay casos en los que alguno se pueda expresar
+  como combinación lineal de los demás, pero solo ese pueda expresarse así? La
+  respuesta es afirmativa. Buscar un ejemplo de esto se deja como ejercicio.
+\end{example}
+
+\begin{example}
+  El conjunto de vectores de $\mathbb{R}^2$, $\{ ( 2, - 1 ), ( - 10, 5 ) \}$,
+  es ligado porque los dos vectores son proporcionales: $( - 10, 5 ) = - 5 (
+  2, - 1 )$.
+\end{example}
+
+\begin{example}
+  El conjunto de polinomios de 2º grado $\{ x^2 + 1, x + 1, x^2 -
+  1, x^2 - 2 x + 1 \}$, es linealmente dependiente, ya que: \begin{center}
+    $2 ( x^2 + 1 ) - 2 ( x + 1 ) - ( x^2 - 1 ) = 2 x^2 + 2 - 2 x - 2 - x^2 + 1
+    = x^2 - 2 x + 1$
+  \end{center}
+El cuarto polinomio se puede obtener como combinación lineal
+  de los tres primeros con coeficientes: $2, - 2, - 1$.
+\end{example}
+
+\begin{definition}
+  [\textbf{Rango}]El rango de un conjunto de vectores $S$ es $n$ si y solo si
+  se cumplen las dos condiciones siguientes:
+
+  \begin{enumeratealpha}
+    \item existe al menos un subconjunto de $n$ vectores de $S$ linealmente
+    independiente;
+
+    \item cualquier subconjunto de $S$ con más de $n$ vectores es linealmente
+    dependiente.
+  \end{enumeratealpha}
+\end{definition}
+
+\begin{remark}El rango de un conjunto de vectores es el mayor número de vectores
+linealmente independientes que se pueden tomar de dicho conjunto.\end{remark}
+
+\begin{remark}Un conjunto de vectores es libre si y solo si su rango es igual a su
+número de vectores.\end{remark}
+
+\begin{example}
+  El rango de $S = \{ ( 1, - 1 ), ( - 1, 1 ), ( 2, - 2 ) \}$ es 2, ya que $S$
+  es un conjunto ligado (según se vio en un ejemplo anterior), pero $\{ ( 1, -
+  1 ), ( - 1, 1 ) \}$ es un conjunto linealmente independiente.
+\end{example}
+
+\newpage\section{Bases}
+
+\begin{definition}
+  [\textbf{Conjunto generador}]Dado un espacio vectorial $V$, se dice que un
+  conjunto de vectores $S = \{ \vec{v}_1, \ldots, \vec{v}_k \}$ es un conjunto
+  generador de $V$ si cualquier vector de $V$ se puede obtener como
+  combinación lineal de los vectores de $S$.
+\end{definition}
+
+\begin{example}
+  El conjunto $S_1 = \{ ( 1, 1 ), ( 1, - 1 ), ( - 1, 1 ), ( - 1, - 1 ) \}$ es
+  un sistema generador de $\mathbb{R}^2$, porque cualquier vector de
+  $\mathbb{R}^2$ se puede obtener como combinación lineal de los vectores de
+  $S_1$. Otra cuestión sería demostrar esto que acabamos de afirmar (se
+  propone como ejercicio).
+\end{example}
+
+\begin{definition}
+  [\textbf{Base}]Dado un espacio vectorial $V$, se dice que un conjunto de
+  vectores $S = \{ \vec{v}_1, \ldots, \vec{v}_k \}$ es una base de $V$ si $S$
+  es un conjunto libre y generador de $V$.
+\end{definition}
+
+\begin{example}
+  El conjunto $S_2 = \{ ( 1, 1 ), ( 1, - 1 ) \}$ es una base de
+  $\mathbb{R}^2$ porque es un conjunto generador (cualquier vector de
+  $\mathbb{R}^2$ se puede obtener como combinación lineal de esos dos), y
+  además es linealmente independiente (solo son dos vectores, no nulos, y no
+  son proporcionales). Sin embargo, el conjunto $S_1$ del ejemplo anterior no
+  es una base, aunque sea generador, porque es linealmente dependiente (claro,
+  si $S_2$ es generador, también $( - 1, 1 )$ y $( - 1, - 1 )$ se pueden
+  obtener como combinación lineal de ellos).
+\end{example}
+
+\begin{example}
+  El conjunto $B = \{ 1, x, x^2 \}$ es una base del espacio vectorial
+  $\mathcal{P}_3$ de los polinomios de segundo grado. Demostración trivial.
+\end{example}
+
+\begin{theorem}
+  [\textbf{Teorema de la dimensión}]Todas las bases de un mismo espacio
+  vectorial tienen el mismo número de vectores.
+\end{theorem}
+
+\begin{definition}
+  [\textbf{Dimensión}]Se llama dimensión de un espacio vectorial al número de
+  vectores de sus bases.
+\end{definition}
+
+\begin{remark}Aunque no vamos a considerarlos en este curso, debemos anotar que
+existen espacios vectoriales cuyas bases tienen infinitos vectores. De dichos
+espacios se dice que tienen dimensión infinita. Por ejemplo, el conjunto de
+todos los polinomios es un espacio vectorial de dimensión infinita. Una base
+de dicho espacio sería el conjunto (infinito) de polinomios: $\{ 1, x, x^2,
+x^3, \ldots, x^n, \ldots \}$.\end{remark}
+
+\begin{remark}Es inmediato demostrar que si la dimensión de un espacio vectorial $V$
+es $n$, cualquier conjunto de más de $n$ vectores de $V$ es linealmente
+dependiente. Es decir, la dimensión de un espacio es el máximo rango que puede
+tener cualquier conjunto de vectores del mismo.\end{remark}
+
+\begin{remark}Si la dimensión de un espacio vectorial es $n$, entonces cualquier
+conjunto generador de $V$ debe tener al menos $n$ vectores. Es decir, la
+dimensión es el tamaño mínimo de los conjuntos generadores de $V$. Además, un
+conjunto de $n$ vectores independientes siempre es una base.\end{remark}
+
+\begin{example}
+  El espacio $\mathbb{R}^2$, estudiado en cursos anteriores, tiene dimensión
+  2. Esto significa que todas sus bases tienen 2 vectores. Por tanto, podemos
+  estar seguros de que un conjunto de 3 vectores no es una base.
+\end{example}
+
+\newpage\section{Coordenadas}
+
+\begin{definition}
+  [\textbf{Coordenadas}]Sea $V$ un espacio vectorial sobre un cuerpo $K$ de
+  dimensión $n$, y sea $B = \{ \vec{u}_1, \ldots, \vec{u}_n \}$ una base de
+  $V$, y sea $\vec{w}$ un vector de $V$. Se dice que los escalares $\lambda_1,
+  \ldots, \lambda_n$ son las coordenadas de $\vec{w}$ respecto de la base $B$
+  si y solo si $\vec{w} = \lambda_1 \vec{u}_1 + \ldots + \lambda_n \vec{u}_n$.
+  Para indicar que $\vec{w}$ es el vector cuyas coordenadas respecto de $B$
+  son $\lambda_1, \ldots, \lambda_n$, se escribe: $\vec{w} ( \lambda_1,
+  \ldots, \lambda_n )_B$.
+\end{definition}
+
+\begin{remark}Existencia y unicidad de las coordenadas. Todo vector de $V$ tiene
+coordenadas respecto de cualquier base $B$, y, además, estas son únicas (es
+decir, que cada vector tiene un único conjunto de coordenadas, y que no hay
+dos vectores con las mismas coordenadas).\end{remark}
+
+\begin{example}
+  Sea $\mathcal{P}_3$ el espacio vectorial de todos los polinomios reales de
+  2º grado (o menor). Sean las bases $B_1 = \{ x^2, x, 1 \}$, $B_2
+  = \{ x^2 + x + 1, x - 1, x + 1 \}$ de $\mathcal{P}_3$. Sea $q ( x ) = x^2 -
+  2 x + 2$ un ``vector'' de $\mathcal{P}_3$. Las coordenadas de $q ( x )$
+  respecto de $B_1$ son, evidentemente, $( 1, - 2, 2 )$. Para hallar las
+  coordenadas de $q ( x )$ respecto de $B_2$ procederíamos del siguiente modo:
+
+  $\lambda_1 ( x^2 + x + 1 ) + \lambda_2 ( x - 1 ) + \lambda_3 ( x + 1 ) = x^2
+  - 2 x + 2 \Leftrightarrow$
+
+  $\Leftrightarrow \lambda_1 x^2 + \lambda_1 x + \lambda_1 + \lambda_2 x -
+  \lambda_2 + \lambda_3 x + \lambda_3 = x^2 - 2 x + 2 \Leftrightarrow$
+
+  $\Leftrightarrow \lambda_1 x^2 + ( \lambda_1 + \lambda_2 + \lambda_3 ) x + (
+  \lambda_1 - \lambda_2 + \lambda_3 ) = x^2 - 2 x + 2 \Leftrightarrow$
+
+  $\Leftrightarrow \left\{\begin{array}{l}
+    \lambda_1 = 1\\
+    \lambda_1 + \lambda_2 + \lambda_3 = - 2\\
+    \lambda_1 - \lambda_2 + \lambda_3 = 2
+  \end{array}\right. \Leftrightarrow \left\{\begin{array}{l}
+    \lambda_1 = 1\\
+    \lambda_2 + \lambda_3 = - 3\\
+    - \lambda_2 + \lambda_3 = 1
+  \end{array}\right. \Leftrightarrow \left\{\begin{array}{l}
+    \lambda_1 = 1\\
+    \lambda_2 + \lambda_3 = - 3\\
+    2 \lambda_3 = - 2
+  \end{array}\right. \Leftrightarrow \left\{\begin{array}{l}
+    \lambda_1 = 1\\
+    \lambda_2 + \lambda_3 = - 3\\
+    \lambda_3 = - 1
+  \end{array}\right. \Leftrightarrow \left\{\begin{array}{l}
+    \lambda_1 = 1\\
+    \lambda_2 = - 2\\
+    \lambda_3 = - 1
+  \end{array}\right.$
+
+  Luego las coordenadas de $q ( x )$ respecto de $B_2$ son $( 1, - 2, - 1 )$.
+\end{example}
+
+\begin{theorem}
+  [\textbf{Cambio de coordenadas}]Sean $B = \{ \vec{u}_1, \ldots, \vec{u}_n \}$
+  y $B' = \{ \vec{u}_1', \ldots, \vec{u}_n' \}$ sendas bases de un espacio
+  vectorial $V$. Sea $\vec{x}$ un vector cualquiera de $V$. Las coordenadas de
+  $\vec{x}$ respecto de $B$ y respecto de $B'$ están relacionadas por la
+  ecuación matricial:
+  \begin{center}
+    $X = M X' \Leftrightarrow \left(\begin{array}{c}
+      x_1\\
+      \ldots\\
+      x_n
+    \end{array}\right) = \left(\begin{array}{ccc}
+      u_{11}' & \ldots & u_{1 n}'\\
+      \ldots & \ldots & \ldots\\
+      u_{n 1}' & \ldots & u_{n n}'
+    \end{array}\right) \left(\begin{array}{c}
+      x_1'\\
+      \ldots\\
+      x_n'
+    \end{array}\right)$
+  \end{center}
+  siendo,
+
+  $X$, una matriz columna formada por las coordenadas de $\vec{x}$ respecto de
+  $B$,
+
+  $X'$, una matriz columna formada por las coordenadas de $\vec{x}$ respecto
+  de $B'$,
+
+  $M$, una matriz cuadrada cuya columna $k$ contiene las coordenadas del
+  vector $\vec{u}_k'$ de $B'$ respecto de la base $B$ ($\vec{u}_k' = u_{1 k}
+  \vec{u}_1 + \ldots + u_{n k} \vec{u}_n$).
+\end{theorem}
+
+\begin{remark}La matriz $M$ se llama matriz de cambio de coordenadas, y es siempre
+invertible, porque sus columnas son vectores de una base (linealmente
+independientes). Cuando queremos hacer un cambio de coordenadas, normalmente
+conocemos $X$ y $M$, y lo que queremos es hallar $X'$. Como $M$ es invertible,
+en la ecuación anterior podemos despejar $X'$ así: $X' = M^{- 1} X$.\end{remark}
+
+\begin{example}
+  Sean las bases $B = \{ ( 1, 0 ), ( 0, 1 ) \}$ y $B' = \{ ( 1, 1 ), ( - 1, 1
+  ) \}$ de $\mathbb{R}^2$. Hallar las coordenadas respecto de la base $B'$
+  del vector $\vec{x} ( 4, 2 )_B$.
+
+  Necesitamos las coordenadas de los vectores de $B'$ respecto de $B$. Es
+  inmediato comprobar que sus coordenadas son sus mismas componentes. Por
+  tanto, la matriz de cambio de coordenadas es:
+
+  $M = \left(\begin{array}{cc}
+    1 & - 1\\
+    1 & 1
+  \end{array}\right) \Rightarrow M^{- 1} = \dfrac{1}{\det ( M )} [ \tmop{Adj} (
+  M ) ]^t = \dfrac{1}{2} \left(\begin{array}{cc}
+    1 & - 1\\
+    1 & 1
+  \end{array}\right)^t = \dfrac{1}{2} \left(\begin{array}{cc}
+    1 & 1\\
+    - 1 & 1
+  \end{array}\right)$
+
+  Aplicando la ecuación anterior: $X = MX' \Leftrightarrow X' = M^{- 1} X
+  \Leftrightarrow X' = \dfrac{1}{2} \left(\begin{array}{cc}
+    1 & 1\\
+    - 1 & 1
+  \end{array}\right) \left(\begin{array}{c}
+    4\\
+    2
+  \end{array}\right) = \left(\begin{array}{c}
+    3\\
+    - 1
+  \end{array}\right)$
+
+  Luego $\vec{x} ( 4, 2 )_B = \vec{x} ( 3, - 1 )_{B'}$. Efectivamente, $3 ( 1,
+  1 ) - ( - 1, 1 ) = ( 3 + 1, 3 - 1 ) = ( 4, 2 ) = \vec{x}$
+\end{example}
+
+\newpage\section{Subespacios vectoriales}
+
+\begin{definition}
+  [\textbf{Subespacio vectorial}]Sea $V$ un espacio vectorial sobre $K$. Sea $S
+  \subset V$ un subconjunto no vacío de $V$. Se dice que $S$ es un subespacio
+  vectorial de $V$ si y solo si toda combinación lineal de vectores de $S$ da
+  como resultado un vector de $S$.
+\end{definition}
+
+\begin{remark}Todos los subespacios vectoriales contienen al vector nulo $\vec{o}$, ya
+que multiplicar por 0 un vector de $S$ es una combinación lineal de vectores
+de $S$, el resultado es $\vec{o}$, y debe ser un vector de $S$.\end{remark}
+
+\begin{remark}Un subespacio vectorial es un espacio vectorial (cumple todas las
+propiedades).\end{remark}
+
+\begin{definition}
+  [\textbf{Envolvente lineal}]Sea $A$ un conjunto cualquiera de vectores de un
+  espacio vectorial $V$. Al conjunto de todas las posibles combinaciones
+  lineales de los vectores de $A$ se le llama envolvente lineal de $A$, y se
+  representa por $\mathcal{L}( A )$.
+\end{definition}
+
+\begin{remark}La envolvente lineal de un conjunto cualquiera de vectores de un espacio
+vectorial $V$ es un subespacio vectorial de $V$.\end{remark}
+
+\begin{remark}$\mathcal{L}( A )$ es el subespacio vectorial ``más pequeño'' que contiene
+a $A$ (es decir, cualquier otro subespacio que contenga a $A$ contiene también
+a $\mathcal{L}( A )$).\end{remark}
+
+\begin{remark}La dimensión del espacio vectorial $\mathcal{L}( A )$ es igual al rango
+de $A$. De hecho también podíamos haber definido el rango de un conjunto de
+vectores como la dimensión del subespacio generado por él.\end{remark}
+
+\begin{example}
+  El conjunto $A = \{ ( \lambda, 0 ) / \lambda \in \mathbb{R} \}$ es un
+  subespacio vectorial de $\mathbb{R}^2$, tiene dimensión 1, y es la
+  envolvente lineal de $B = \{ ( 1, 0 ) \}$: $\mathcal{L}( B ) = A$.
+\end{example}
+
+\begin{example}
+  El conjunto de todos los polinomios de primer grado o menor es un subespacio
+  vectorial del conjunto de todos los polinomios de segundo grado o menor. Es
+  un subespacio de dimensión 2.
+\end{example}
+
+\begin{example}
+  El subconjunto de $\mathbb{R}^2$, $A = \{ ( \lambda, 3 ) / \lambda \in
+  \mathbb{R} \}$ no es un subespacio vectorial. El vector $\vec{u} = ( 1, 3
+  )$ es un vector de $A$, sin embargo, el vector $\vec{w} = 2 \vec{u} = 2 ( 1,
+  3 ) = ( 2, 6 )$ no es un vector de $A$, pese a ser combinación lineal de un
+  vector de $A$. Nótese que $\vec{o} = ( 0, 0 ) \notin A$.
+\end{example}
+
 \newpage\section{Vectores libres}
 
 \begin{definition}[Vector libre]Se llama {\tmstrong{vector libre}} a un conjunto
@@ -5604,20 +6263,19 @@ contrario al de $\vec{v}$ si $\lambda < 0$.\end{remark}
 
 \begin{remark}Cuando más adelante estudiemos el concepto de dependencia lineal, veremos que esta definición podría resumirse diciendo que dos vectores tienen la misma dirección si son linealmente dependientes.\end{remark}
 
-\newpage\section{Dependencia lineal de vectores}
+\newpage\section{El espacio vectorial $\mathbb{R}^3$}
 
-\begin{definition}[Combinaci\'on lineal] Se dice que un vector $\vec{w}$ es una
-  combinación lineal de un conjunto de vectores $\{ \vec{v}_1, \ldots,
-  \vec{v}_k \}$ si existe un conjunto de escalares $\{ \lambda_1, \ldots,
-  \lambda_k \}$ tales que:
-  \begin{center}
-    $\vec{w} = \lambda_1 \vec{v}_1 + \ldots + \lambda_k \vec{v}_k =
-    \overset{k}{\underset{i = 1}{\sum}} \lambda_i \vec{v}_i$
-  \end{center}
-  Si un vector es una combinación lineal de un conjunto de vectores, también
-  se dice que depende linealmente de ellos. A los escalares $\lambda_1, \ldots, \lambda_k$ se les llama coeficientes de
-  la combinación lineal.
-\end{definition}
+\begin{theorem}
+  [El espacio vectorial $\mathbb{R}^3$] El conjunto de todos los vectores libres de tres componentes, junto con las operaciones \emph{suma} y \emph{producto por un escalar} definidas anteriormente, forman un espacio vectorial de dimensión $3$.
+\end{theorem}
+
+\begin{remark}
+  En general, el conjunto de todos los vectores de $n$ componentes, junto con las operaciones \emph{suma} y \emph{producto por un escalar} definidas de manera análoga, forman un espacio vectorial de dimensión $n$.
+\end{remark}
+
+\begin{remark}
+  Los conceptos de \emph{combinación lineal}, \emph{dependencia lineal}, \emph{bases}, \emph{coordenadas}, estudiados anteriormente de manera general para cualquier espacio vectorial, pueden aplicarse, por tanto, a los vectores libres del espacio tridimensional, como puede verse en los siguientes ejemplos.
+\end{remark}
 
 \begin{example}
   El vector $(-6,1,2)$ es una combinación lineal de los
@@ -5628,39 +6286,6 @@ contrario al de $\vec{v}$ si $\lambda < 0$.\end{remark}
 Los coeficientes de la combinación lineal anterior serían: $2,
   - 1, 3$.
 \end{example}
-
-\begin{definition}
-  [Dependencia lineal]Se dice que un conjunto de vectores es
-  linealmente dependiente (o ligado) si al menos uno de ellos es una
-  combinación lineal de los demás. En caso contrario, se dice que el conjunto
-  de vectores es linealmente independiente (o libre).
-\end{definition}
-
-\begin{remark}Se puede demostrar que un conjunto de vectores $\{ \vec{v}_1, \ldots,
-\vec{v}_k \}$ es linealmente independiente si y solo si
-$\overset{k}{\underset{i = 1}{\sum}} \lambda_i \vec{v}_i = \vec{o} \Rightarrow
-\lambda_i = 0, \forall i \in \{ 1, \ldots, k \}$, es decir, si la única
-combinación lineal que da como resultado el vector nulo es la que tiene todos
-los coeficientes nulos.\end{remark}
-
-\begin{remark}Un conjunto de vectores que incluya al vector nulo siempre es ligado (ya
-que el vector nulo siempre se puede obtener como combinación lineal de los
-demás).\end{remark}
-
-\begin{remark}Un conjunto de un único vector se considera siempre libre, salvo que
-dicho vector sea $\vec{o}$.\end{remark}
-
-\begin{remark}Un conjunto de dos vectores no nulos $\{ \vec{u}, \vec{w} \}$ es ligado
-si y solo si los dos vectores son proporcionales, ya que si uno de los dos se
-puede obtener como combinación lineal del otro, es que existe algún escalar
-$\lambda$ tal que $\vec{u} = \lambda \vec{w}$ (esto es lo mismo que decir que
-$\vec{u}$ y $\vec{w}$ son proporcionales).\end{remark}
-
-\begin{remark}Se puede demostrar que si un conjunto de vectores $\{ \vec{v}_1, \ldots,
-\vec{v}_k \}$ es linealmente independiente, entonces no existen dos
-combinaciones lineales distintas de dichos vectores que den el mismo
-resultado. La demostración (por reducción al absurdo) se deja como
-ejercicio.\end{remark}
 
 \begin{example}
   El conjunto de vectores, $\{ ( 1, - 1, 0 ), ( - 1, 1, 2 ), ( 2,
@@ -5682,15 +6307,6 @@ En este caso, cualquiera de los tres vectores se puede obtener
   2, - 1, 0 )$.
 \end{example}
 
-\newpage\section{Bases}
-
-\begin{definition}
-  [Conjunto generador]Se dice que un
-  conjunto de vectores $S = \{ \vec{v}_1, \ldots, \vec{v}_k \}$ es un conjunto
-  generador del espacio vectorial si cualquier vector del espacio se puede obtener como
-  combinación lineal de los vectores de $S$.
-\end{definition}
-
 \begin{example}
   El conjunto $S_1 = \{ ( 1, 1, 0 ), ( 1, - 1, 0 ), (0, - 1, 1 ), ( - 1, 0, - 1 ) \}$ es
   un sistema generador de $\mathbb{R}^3$, porque cualquier vector de
@@ -5698,12 +6314,6 @@ En este caso, cualquiera de los tres vectores se puede obtener
   $S_1$. Otra cuestión sería demostrar esto que acabamos de afirmar (se
   propone como ejercicio).
 \end{example}
-
-\begin{definition}
-  [Base]Se dice que un conjunto de
-  vectores $S = \{ \vec{v}_1, \ldots, \vec{v}_k \}$ es una base del espacio vectorial si $S$
-  es un conjunto libre y generador del espacio.
-\end{definition}
 
 \begin{example}
   El conjunto $S_2 = \{ ( 1, 1, 0 ), ( 1, - 1, 0 ), (0,-1,1) \}$ es una base de
@@ -5715,16 +6325,6 @@ En este caso, cualquiera de los tres vectores se puede obtener
   obtener como combinación lineal de los tres primeros vectores).
 \end{example}
 
-\begin{theorem}
-  [Teorema de la dimensión]Todas las bases de un mismo espacio
-  vectorial tienen el mismo número de vectores.
-\end{theorem}
-
-\begin{definition}
-  [Dimensión]Se llama dimensión de un espacio vectorial al número de
-  vectores de sus bases.
-\end{definition}
-
 \begin{remark}Según hemos visto en un ejemplo, la dimensión del espacio vectorial $\mathbb{R}^3$ es $3$, ya que encontramos una base con tres vectores. Esto nos permite concluir para nuestro espacio vectorial $\mathbb{R}^3$:
   \begin{itemize}
   \item Cualquier conjunto con más de tres vectores es linealmente dependiente.
@@ -5732,23 +6332,6 @@ En este caso, cualquiera de los tres vectores se puede obtener
   \item Un conjunto de tres vectores que sea libre ha de ser generador y, por tanto, una base.
   \end{itemize}
 \end{remark}
-
-\begin{definition}
-  [Coordenadas de un vector]Sea $B = \{ \vec{u}_1, \vec{u}_2, \vec{u}_3 \}$ una base de
-  $\mathbb{R}^3$, y sea $\vec{w}$ un vector de $\mathbb{R}^3$. Se dice que los escalares $\lambda_1,
-  \lambda_2, \lambda_3$ son las coordenadas de $\vec{w}$ respecto de la base $B$
-  si y solo si $\vec{w} = \lambda_1 \vec{u}_1 + \lambda_2\vec{u}_2 + \lambda_3 \vec{u}_3$.
-  Para indicar que $\vec{w}$ es el vector cuyas coordenadas respecto de $B$
-  son $\lambda_1, \lambda_2, \lambda_3$, se escribe: $\vec{w} ( \lambda_1,
-  \lambda_2, \lambda_3 )_B$.
-\end{definition}
-
-\begin{remark}Existencia y unicidad de las coordenadas. Todo vector de $\mathbb{R}^3$ tiene
-coordenadas respecto de cualquier base $B$, y, además, estas son únicas (es
-decir, que cada vector tiene un único conjunto de coordenadas, y no hay
-dos vectores con las mismas coordenadas).\end{remark}
-
-
 
 \begin{definition}[Base canónica de $\mathbb{R}^3$]Se llama base canónica de
 $\mathbb{R}^3$ a la siguiente:
@@ -6417,6 +7000,9 @@ ecuación recibe el nombre de ``ecuación cartesiana del lugar geométrico''.\end{r
   El punto medio del segmento $A B$, que es $C ( 2, 2, 2 )$ pertenece
   efectivamente a ese lugar geométrico, ya que la suma de sus coordenadas es
   6.
+
+
+  El lugar geométrico anterior es un plano (como estudiaremos en el tema próximo). Es lógico pensar que, en el espacio tridimensional, el conjunto de puntos equidistantes de dos puntos forme un plano. Dicho plano se llama \emph{plano mediador} del segmento determinado por esos dos puntos, y es el equivalente, en tres dimensiones, a la mediatriz de un segmento en dos dimensiones.
 \end{example}
 
 \chapter{Rectas y planos}
@@ -6943,6 +7529,31 @@ recta intersección de ambos planos.\end{remark}
     x - 3 y + 7 = 0\\
     5 y - z - 17 = 0
   \end{array}\right.$
+\end{example}
+
+\begin{definition}
+  [Plano mediador de un segmento] Se llama plano mediador de un segmento al plano que pasa por el punto medio de dicho segmento y es perpendicular al mismo. Es también el lugar geométrico de los puntos del espacio que equidistan de los extremos del segmento.
+\end{definition}
+
+\begin{example}
+  Hallar el plano mediador del segmento de extremos $A(1,1,2)$, $B(3, 1, -2)$.
+
+  El plano mediador del segmento $AB$, es un plano que pasa por el punto medio del segmento:
+
+  \[M = \dfrac{1}{2}(A+B) = (2, 1, 0)\]
+
+  Además, ha de ser perpendicular al segmento. Por lo tanto, su vector normal es:
+  \[\overrightarrow{n} = \overrightarrow{AB} = (2,0,-4)\]
+
+  Utilizando la ecuación normal del plano, obtenemos la ecuación del plano mediador del segmento $AB$:
+
+  \[\pi: \overrightarrow{n}\cdot\overrightarrow{MX} = 0 \iff \pi:(2,0,-4)\cdot(x-2, y-1,z) = 0 \iff \pi:2(x-2)-4z=0 \iff \pi: x-2z-2=0\]
+
+  Dado que el plano mediador es el lugar geométrico de los puntos equidistantes de $A$ y $B$, podíamos también haber obtenido su ecuación así:
+  \begin{eqnarray*}
+    \pi: d(A,X)=d(B,X) &\iff& \left|\overrightarrow{AX}\right|^2=\left|\overrightarrow{BX}\right|^2 \\
+    &\iff& (x-1)^2+(y-1)^2+(z-2)^2=(x-3)^2+(y-1)^2+(z+2)^2
+  \end{eqnarray*}
 \end{example}
 
 {}
@@ -8126,6 +8737,16 @@ forman una partición del espacio muestral. Podría decirse que se ha dividido el 
 
 \begin{remark}
   Las dos definiciones dadas son compatibles. Es posible demostrar que la probabilidad de que el límite de la frecuencia relativa de un suceso cuando el número de repeticiones del experimento tiende a infinito sea igual a su probabilidad es del $100\%$ siempre que las probabilidades se hayan asignado cumpliendo los axiomas de Kolmogorov. Esta afirmación se llama \emph{Ley de los Grandes Números}.
+\end{remark}
+
+\begin{remark}
+  El concepto de probabilidad tiene diversas interpretaciones. Las principales son tres: \emph{clásica}, \emph{frecuentista} y \emph{subjetiva}.
+  \begin{itemize}
+    \item \emph{Interpretación clásica}: la probabilidad de un suceso indica qué proporción de las posibilidad disponibles corresponden a ese suceso. Es la primera interpretación que se dio a la probabilidad, y la que está detrás de la \emph{Regla de Laplace}, que veremos después. Según esta interpretación, que la probabilidad de obtener un seis al lanzar un dado sea $1/6$ significa que al lanzar un dado tenemos seis opciones, y obtener un seis es una de ellas. Esta interpretación sólo es aplicable cuando el número de resultados posibles es finito, e implica la equiprobabilidad de dichos resultados posibles.
+    \item \emph{Interpretación frecuentista}: la probabilidad de un suceso es el límite al que se acerca la frecuencia relativa de dicho suceso cuando repetimos muchas veces el experimento aleatorio. Se corresponde con la definición frecuentista de probabilidad dada arriba. Esta interpretación se utiliza mucho en Física, y también en las Ciencias Sociales, al analizar fenómenos que se repiten muchas veces. El problema de esta interpretación, es que, según ella, la probabilidad es un valor empírico, pero que no es posible medir de forma exacta (pues requeriría infinitas repeticiones del experimento).
+    \item \emph{Interpretación subjetiva}: la probabilidad de un suceso es una medida de la seguridad con la que podemos \emph{creer} que ocurrirá dicho suceso. Este concepto es aplicable a hechos en los que no hay ninguna repetición. Por ejemplo, cuando un policía afirma que es poco probable que cierto sospechoso sea el autor del delito, está utilizando esta interpretación subjetiva de la probabilidad. No quiere decir que si se repitiera muchas veces el delito, ese sospechoso sería culpable pocas veces. Esto es absurdo. Simplemente quiere decir, que, subjetivamente, se inclina a pensar que el sospechoso es inocente. Se utiliza especialmente para interpretar el concepto de \emph{probabilidad condicionada}, que estudiaremos más adelante.
+  \end{itemize}
+  La definición axiomática de probabilidad es independiente de su interpretación. Es un modelo matemático, que define un concepto matemático, al que podemos dar cualquiera de las interpretaciones anteriores, ya que es coherente con todas ellas.
 \end{remark}
 
 \newpage\section{Propiedades de la probabilidad}
@@ -9589,488 +10210,6 @@ La dificultad de las demostraciones de afirmaciones \emph{universales} es que, n
 \end{remark}
 
 
-\chapter{Espacios vectoriales}
-
-\newpage\section{Espacios vectoriales}
-
-\begin{definition}[\textbf{Espacio vectorial}]Sea un conjunto $V$, a cuyos elementos
-llamaremos {\tmstrong{vectores}}, y sea un cuerpo $K$, a cuyos elementos
-llamaremos escalares. Se dice que $V$ es un {\tmstrong{espacio vectorial}}
-sobre $K$ si existen dos operaciones, llamadas ``suma'' y ``producto por
-escalar'', tales que:
-\begin{enumeratealpha}
-  \item La ``suma de vectores'' es una operación interna ($+ : V \times V
-  \rightarrow V$) que cumple:
-  
-  \begin{itemize}
-    \item Propiedad asociativa: $\forall \vec{u}, \vec{v}, \vec{w} \in V,
-    \vec{u} + ( \vec{v} + \vec{w} ) = ( \vec{u} + \vec{v} ) + \vec{w}$
-    
-    \item Propiedad conmutativa: $\forall \vec{u}, \vec{v} \in V, \vec{u} +
-    \vec{v} = \vec{v} + \vec{u}$
-    
-    \item Elemento neutro (vector nulo): $\exists \overrightarrow{o} \in V /
-    \forall \overrightarrow{u} \in V, \vec{u} + \vec{o} = \vec{u}$
-    
-    \item Elemento simétrico (opuesto): $\forall \vec{u} \in V, \exists -
-    \vec{u} / \vec{u} + ( - \vec{u} ) = \vec{o}$
-  \end{itemize}
-  
-  \item El ``producto por escalar'' es una operación externa ($\cdot : V \times
-  K \rightarrow V$) que cumple:
-  
-  \begin{itemize}
-    \item Propiedad distributiva: $\forall \vec{u}, \vec{v} \in V, \lambda,
-    \mu \in K, \left\{\begin{array}{l}
-      \lambda ( \vec{u} + \vec{v} ) = \lambda \vec{u} + \lambda \vec{v}\\
-      ( \lambda + \mu ) \vec{u} = \lambda \vec{u} + \mu \vec{u}
-    \end{array}\right.$
-    
-    \item Propiedad asociativa: $\forall \vec{u} \in V, \lambda, \mu \in K,
-    \lambda ( \mu \vec{u} ) = ( \lambda \mu ) \vec{u}$
-    
-    \item Elemento neutro: $\forall \vec{u} \in V, 1 \vec{u} = \vec{u}$
-  \end{itemize}
-\end{enumeratealpha}
-\end{definition}
-
-\begin{remark}Recuérdese que el único cuerpo que conocemos es $\mathbb{R}$, así que,
-para nosotros, $K \equiv \mathbb{R}$. El conjunto de los números complejos
-$\mathbb{C}$ también es un cuerpo.\end{remark}
-
-\begin{remark}El símbolo utilizado para representar la ``suma de vectores'' ($+$) es el
-mismo que hemos utilizado siempre para la ``suma de escalares''. Sin embargo, se
-trata de dos operaciones de distinta naturaleza, que en la mayoría de los
-casos se efectúan de maneras muy distintas. Siempre debemos prestar atención a
-los objetos que sumamos (si son vectores o escalares). Una expresión como
-$\vec{v} + \lambda$ no tiene sentido, porque en ningún momento hemos definido
-una operación ``suma de vector y escalar''.\end{remark}
-
-\begin{theorem}
-  [\textbf{Propiedades básicas}]En un espacio vectorial $V$ sobre un cuerpo
-  $K$, para cualesquiera que sean $\vec{u}, \vec{v} \in V$ y $\lambda, \mu \in
-  K$, se verifica que:
-  \begin{enumeratealpha}
-    \item $\lambda \vec{o} = \vec{o}$
-    
-    \item $0 \vec{u} = \vec{o}$
-    
-    \item $\lambda \vec{u} = \vec{o} \Rightarrow ( \lambda = 0 ó \vec{u} =
-    \vec{o} )$
-    
-    \item $( \lambda \vec{u} = \mu \vec{u}$ y $\vec{u} \neq \vec{o} )
-    \Rightarrow \lambda = \mu$
-    
-    \item $( \lambda \vec{u} = \lambda \vec{v}$ y $\lambda \neq 0 )
-    \Rightarrow \vec{u} = \vec{v}$
-    
-    \item $( - \lambda ) \vec{u} = \lambda ( - \vec{u} ) = - \lambda \vec{u}$
-  \end{enumeratealpha}
-\end{theorem}
-
-\begin{remark}Estas propiedades son consecuencias directas de las propiedades de las
-operaciones que constituyen el espacio vectorial y se cumplen por tanto para
-todo espacio vectorial, pudiéndose demostrar (es un buen ejercicio) en
-general, sin necesidad de definir qué significan (o cómo se efectúan) las
-operaciones + (suma) y $\cdot$ (producto por un escalar).\end{remark}
-
-\begin{example}
-  El conjunto $\mathbb{R} \times \mathbb{R}=\mathbb{R}^2 = \{ ( a, b ) / a,
-  b \in \mathbb{R} \}$ es un espacio vectorial sobre $\mathbb{R}$, si en él
-  definimos la operación suma (+) como $( a, b ) + ( c, d ) = ( a + b, c + d
-  )$, y la operación producto por escalar como $k ( a, b ) = ( ka, kb )$, ya
-  que estas operaciones cumplen las propiedades de la definición.
-\end{example}
-
-\begin{example}
-El conjunto de todas las matrices reales de dimensión $m \times n$ (que
-se representa por $\mathcal{M}_{m \times n}$) es un espacio vectorial, ya que
-las operaciones suma y producto por escalar cumplen las propiedades de la
-definición.
-\end{example}
-
-\begin{example}
-  El conjunto de todos los polinomios $P ( x )$ es un espacio vectorial sobre
-  $\mathbb{R}$ respecto de las operaciones usuales de suma de polinomios y
-  producto de un número por un polinomio.
-\end{example}
-
-\newpage\section{Dependencia lineal}
-
-\begin{definition}
-  [\textbf{Combinación lineal}]Se dice que un vector $\vec{w}$ es una
-  combinación lineal de un conjunto de vectores $\{ \vec{v}_1, \ldots,
-  \vec{v}_k \}$ si existe un conjunto de escalares $\{ \lambda_1, \ldots,
-  \lambda_k \}$ tales que:
-  \begin{center}
-    $\vec{w} = \lambda_1 \vec{v}_1 + \ldots + \lambda_k \vec{v}_k =
-    \overset{k}{\underset{i = 1}{\sum}} \lambda_i \vec{v}_i$
-  \end{center}
-  Si un vector es una combinación lineal de un conjunto de vectores, también
-  se dice que depende linealmente de ellos. A los escalares $\lambda_1, \ldots, \lambda_k$ se les llama coeficientes de
-  la combinación lineal.
-\end{definition}
-
-\begin{example}
-  El vector $( - 6, 1 )$ de $\mathbb{R}^2$ es una combinación lineal de los
-  vectores de $\mathbb{R}^2$ $\{ ( 1, - 1 ), ( 2, 0 ), ( - 2, 1 ) \}$, ya que
-  \begin{center}
-    $2 ( 1, - 1 ) - ( 2, 0 ) + 3 ( - 2, 1 ) = ( - 6, 1 )$
-  \end{center}
-Los coeficientes de la combinación lineal anterior serían: $2,
-  - 1, 3$.
-\end{example}
-
-\begin{definition}
-  [\textbf{Dependencia lineal}]Se dice que un conjunto de vectores es
-  linealmente dependiente (o ligado) si al menos uno de ellos es una
-  combinación lineal de los demás. En caso contrario, se dice que el conjunto
-  de vectores es linealmente independiente (o libre).
-\end{definition}
-
-\begin{remark}Se puede demostrar que un conjunto de vectores $\{ \vec{v}_1, \ldots,
-\vec{v}_k \}$ es linealmente independiente si y solo si
-$\overset{k}{\underset{i = 1}{\sum}} \lambda_i \vec{v}_i = \vec{o} \Rightarrow
-\lambda_i = 0, \forall i \in \{ 1, \ldots, k \}$, es decir, si la única
-combinación lineal que da como resultado el vector nulo es la que tiene todos
-los coeficientes nulos.\end{remark}
-
-\begin{remark}Un conjunto de vectores que incluya al vector nulo siempre es ligado (ya
-que el vector nulo siempre se puede obtener como combinación lineal de los
-demás).\end{remark}
-
-\begin{remark}Un conjunto de un único vector se considera siempre libre, salvo que
-dicho vector sea $\vec{o}$.\end{remark}
-
-\begin{remark}Un conjunto de dos vectores no nulos $\{ \vec{u}, \vec{w} \}$ es ligado
-si y solo si los dos vectores son proporcionales, ya que si uno de los dos se
-puede obtener como combinación lineal del otro, es que existe algún escalar
-$\lambda$ tal que $\vec{u} = \lambda \vec{w}$ (esto es lo mismo que decir que
-$\vec{u}$ y $\vec{w}$ son proporcionales).\end{remark}
-
-\begin{remark}Se puede demostrar que si un conjunto de vectores $\{ \vec{v}_1, \ldots,
-\vec{v}_k \}$ es linealmente independiente, entonces no existen dos
-combinaciones lineales distintas de dichos vectores que den el mismo
-resultado. La demostración (por reducción al absurdo) se deja como
-ejercicio.\end{remark}
-
-\begin{example}
-  El conjunto de vectores de $\mathbb{R}^2$, $\{ ( 1, - 1 ), ( - 1, 1 ), ( 2,
-  - 2 ) \}$, es linealmente dependiente porque al menos uno de ellos se puede
-  obtener como combinación lineal de los otros dos, puesto que se tiene
-  \begin{center}
-    $( 2, - 2 ) = 2 ( 1, - 1 ) - ( - 1, 1 )$
-  \end{center}
-En este caso, cualquiera de los tres vectores se puede obtener
-  como combinación lineal de los otros dos. Pero, basta con uno de ellos para
-  que el conjunto sea ligado. ¿Hay casos en los que alguno se pueda expresar
-  como combinación lineal de los demás, pero solo ese pueda expresarse así? La
-  respuesta es afirmativa. Buscar un ejemplo de esto se deja como ejercicio.
-\end{example}
-
-\begin{example}
-  El conjunto de vectores de $\mathbb{R}^2$, $\{ ( 2, - 1 ), ( - 10, 5 ) \}$,
-  es ligado porque los dos vectores son proporcionales: $( - 10, 5 ) = - 5 (
-  2, - 1 )$.
-\end{example}
-
-\begin{example}
-  El conjunto de polinomios de 2º grado $\{ x^2 + 1, x + 1, x^2 -
-  1, x^2 - 2 x + 1 \}$, es linealmente dependiente, ya que: \begin{center}
-    $2 ( x^2 + 1 ) - 2 ( x + 1 ) - ( x^2 - 1 ) = 2 x^2 + 2 - 2 x - 2 - x^2 + 1
-    = x^2 - 2 x + 1$
-  \end{center}
-El cuarto polinomio se puede obtener como combinación lineal
-  de los tres primeros con coeficientes: $2, - 2, - 1$.
-\end{example}
-
-\begin{definition}
-  [\textbf{Rango}]El rango de un conjunto de vectores $S$ es $n$ si y solo si
-  se cumplen las dos condiciones siguientes:
-  
-  \begin{enumeratealpha}
-    \item existe al menos un subconjunto de $n$ vectores de $S$ linealmente
-    independiente;
-    
-    \item cualquier subconjunto de $S$ con más de $n$ vectores es linealmente
-    dependiente.
-  \end{enumeratealpha}
-\end{definition}
-
-\begin{remark}El rango de un conjunto de vectores es el mayor número de vectores
-linealmente independientes que se pueden tomar de dicho conjunto.\end{remark}
-
-\begin{remark}Un conjunto de vectores es libre si y solo si su rango es igual a su
-número de vectores.\end{remark}
-
-\begin{example}
-  El rango de $S = \{ ( 1, - 1 ), ( - 1, 1 ), ( 2, - 2 ) \}$ es 2, ya que $S$
-  es un conjunto ligado (según se vio en un ejemplo anterior), pero $\{ ( 1, -
-  1 ), ( - 1, 1 ) \}$ es un conjunto linealmente independiente.
-\end{example}
-
-\newpage\section{Bases}
-
-\begin{definition}
-  [\textbf{Conjunto generador}]Dado un espacio vectorial $V$, se dice que un
-  conjunto de vectores $S = \{ \vec{v}_1, \ldots, \vec{v}_k \}$ es un conjunto
-  generador de $V$ si cualquier vector de $V$ se puede obtener como
-  combinación lineal de los vectores de $S$.
-\end{definition}
-
-\begin{example}
-  El conjunto $S_1 = \{ ( 1, 1 ), ( 1, - 1 ), ( - 1, 1 ), ( - 1, - 1 ) \}$ es
-  un sistema generador de $\mathbb{R}^2$, porque cualquier vector de
-  $\mathbb{R}^2$ se puede obtener como combinación lineal de los vectores de
-  $S_1$. Otra cuestión sería demostrar esto que acabamos de afirmar (se
-  propone como ejercicio).
-\end{example}
-
-\begin{definition}
-  [\textbf{Base}]Dado un espacio vectorial $V$, se dice que un conjunto de
-  vectores $S = \{ \vec{v}_1, \ldots, \vec{v}_k \}$ es una base de $V$ si $S$
-  es un conjunto libre y generador de $V$.
-\end{definition}
-
-\begin{example}
-  El conjunto $S_2 = \{ ( 1, 1 ), ( 1, - 1 ) \}$ es una base de
-  $\mathbb{R}^2$ porque es un conjunto generador (cualquier vector de
-  $\mathbb{R}^2$ se puede obtener como combinación lineal de esos dos), y
-  además es linealmente independiente (solo son dos vectores, no nulos, y no
-  son proporcionales). Sin embargo, el conjunto $S_1$ del ejemplo anterior no
-  es una base, aunque sea generador, porque es linealmente dependiente (claro,
-  si $S_2$ es generador, también $( - 1, 1 )$ y $( - 1, - 1 )$ se pueden
-  obtener como combinación lineal de ellos).
-\end{example}
-
-\begin{example}
-  El conjunto $B = \{ 1, x, x^2 \}$ es una base del espacio vectorial
-  $\mathcal{P}_3$ de los polinomios de segundo grado. Demostración trivial.
-\end{example}
-
-\begin{theorem}
-  [\textbf{Teorema de la dimensión}]Todas las bases de un mismo espacio
-  vectorial tienen el mismo número de vectores.
-\end{theorem}
-
-\begin{definition}
-  [\textbf{Dimensión}]Se llama dimensión de un espacio vectorial al número de
-  vectores de sus bases.
-\end{definition}
-
-\begin{remark}Aunque no vamos a considerarlos en este curso, debemos anotar que
-existen espacios vectoriales cuyas bases tienen infinitos vectores. De dichos
-espacios se dice que tienen dimensión infinita. Por ejemplo, el conjunto de
-todos los polinomios es un espacio vectorial de dimensión infinita. Una base
-de dicho espacio sería el conjunto (infinito) de polinomios: $\{ 1, x, x^2,
-x^3, \ldots, x^n, \ldots \}$.\end{remark}
-
-\begin{remark}Es inmediato demostrar que si la dimensión de un espacio vectorial $V$
-es $n$, cualquier conjunto de más de $n$ vectores de $V$ es linealmente
-dependiente. Es decir, la dimensión de un espacio es el máximo rango que puede
-tener cualquier conjunto de vectores del mismo.\end{remark}
-
-\begin{remark}Si la dimensión de un espacio vectorial es $n$, entonces cualquier
-conjunto generador de $V$ debe tener al menos $n$ vectores. Es decir, la
-dimensión es el tamaño mínimo de los conjuntos generadores de $V$. Además, un
-conjunto de $n$ vectores independientes siempre es una base.\end{remark}
-
-\begin{example}
-  El espacio $\mathbb{R}^2$, estudiado en cursos anteriores, tiene dimensión
-  2. Esto significa que todas sus bases tienen 2 vectores. Por tanto, podemos
-  estar seguros de que un conjunto de 3 vectores no es una base.
-\end{example}
-
-\newpage\section{Coordenadas}
-
-\begin{definition}
-  [\textbf{Coordenadas}]Sea $V$ un espacio vectorial sobre un cuerpo $K$ de
-  dimensión $n$, y sea $B = \{ \vec{u}_1, \ldots, \vec{u}_n \}$ una base de
-  $V$, y sea $\vec{w}$ un vector de $V$. Se dice que los escalares $\lambda_1,
-  \ldots, \lambda_n$ son las coordenadas de $\vec{w}$ respecto de la base $B$
-  si y solo si $\vec{w} = \lambda_1 \vec{u}_1 + \ldots + \lambda_n \vec{u}_n$.
-  Para indicar que $\vec{w}$ es el vector cuyas coordenadas respecto de $B$
-  son $\lambda_1, \ldots, \lambda_n$, se escribe: $\vec{w} ( \lambda_1,
-  \ldots, \lambda_n )_B$.
-\end{definition}
-
-\begin{remark}Existencia y unicidad de las coordenadas. Todo vector de $V$ tiene
-coordenadas respecto de cualquier base $B$, y, además, estas son únicas (es
-decir, que cada vector tiene un único conjunto de coordenadas, y que no hay
-dos vectores con las mismas coordenadas).\end{remark}
-
-\begin{example}
-  Sea $\mathcal{P}_3$ el espacio vectorial de todos los polinomios reales de
-  2º grado (o menor). Sean las bases $B_1 = \{ x^2, x, 1 \}$, $B_2
-  = \{ x^2 + x + 1, x - 1, x + 1 \}$ de $\mathcal{P}_3$. Sea $q ( x ) = x^2 -
-  2 x + 2$ un ``vector'' de $\mathcal{P}_3$. Las coordenadas de $q ( x )$
-  respecto de $B_1$ son, evidentemente, $( 1, - 2, 2 )$. Para hallar las
-  coordenadas de $q ( x )$ respecto de $B_2$ procederíamos del siguiente modo:
-  
-  $\lambda_1 ( x^2 + x + 1 ) + \lambda_2 ( x - 1 ) + \lambda_3 ( x + 1 ) = x^2
-  - 2 x + 2 \Leftrightarrow$
-  
-  $\Leftrightarrow \lambda_1 x^2 + \lambda_1 x + \lambda_1 + \lambda_2 x -
-  \lambda_2 + \lambda_3 x + \lambda_3 = x^2 - 2 x + 2 \Leftrightarrow$
-  
-  $\Leftrightarrow \lambda_1 x^2 + ( \lambda_1 + \lambda_2 + \lambda_3 ) x + (
-  \lambda_1 - \lambda_2 + \lambda_3 ) = x^2 - 2 x + 2 \Leftrightarrow$
-  
-  $\Leftrightarrow \left\{\begin{array}{l}
-    \lambda_1 = 1\\
-    \lambda_1 + \lambda_2 + \lambda_3 = - 2\\
-    \lambda_1 - \lambda_2 + \lambda_3 = 2
-  \end{array}\right. \Leftrightarrow \left\{\begin{array}{l}
-    \lambda_1 = 1\\
-    \lambda_2 + \lambda_3 = - 3\\
-    - \lambda_2 + \lambda_3 = 1
-  \end{array}\right. \Leftrightarrow \left\{\begin{array}{l}
-    \lambda_1 = 1\\
-    \lambda_2 + \lambda_3 = - 3\\
-    2 \lambda_3 = - 2
-  \end{array}\right. \Leftrightarrow \left\{\begin{array}{l}
-    \lambda_1 = 1\\
-    \lambda_2 + \lambda_3 = - 3\\
-    \lambda_3 = - 1
-  \end{array}\right. \Leftrightarrow \left\{\begin{array}{l}
-    \lambda_1 = 1\\
-    \lambda_2 = - 2\\
-    \lambda_3 = - 1
-  \end{array}\right.$
-  
-  Luego las coordenadas de $q ( x )$ respecto de $B_2$ son $( 1, - 2, - 1 )$.
-\end{example}
-
-\begin{theorem}
-  [\textbf{Cambio de coordenadas}]Sean $B = \{ \vec{u}_1, \ldots, \vec{u}_n \}$
-  y $B' = \{ \vec{u}_1', \ldots, \vec{u}_n' \}$ sendas bases de un espacio
-  vectorial $V$. Sea $\vec{x}$ un vector cualquiera de $V$. Las coordenadas de
-  $\vec{x}$ respecto de $B$ y respecto de $B'$ están relacionadas por la
-  ecuación matricial:
-  \begin{center}
-    $X = M X' \Leftrightarrow \left(\begin{array}{c}
-      x_1\\
-      \ldots\\
-      x_n
-    \end{array}\right) = \left(\begin{array}{ccc}
-      u_{11}' & \ldots & u_{1 n}'\\
-      \ldots & \ldots & \ldots\\
-      u_{n 1}' & \ldots & u_{n n}'
-    \end{array}\right) \left(\begin{array}{c}
-      x_1'\\
-      \ldots\\
-      x_n'
-    \end{array}\right)$
-  \end{center}
-  siendo,
-  
-  $X$, una matriz columna formada por las coordenadas de $\vec{x}$ respecto de
-  $B$,
-  
-  $X'$, una matriz columna formada por las coordenadas de $\vec{x}$ respecto
-  de $B'$,
-  
-  $M$, una matriz cuadrada cuya columna $k$ contiene las coordenadas del
-  vector $\vec{u}_k'$ de $B'$ respecto de la base $B$ ($\vec{u}_k' = u_{1 k}
-  \vec{u}_1 + \ldots + u_{n k} \vec{u}_n$).
-\end{theorem}
-
-\begin{remark}La matriz $M$ se llama matriz de cambio de coordenadas, y es siempre
-invertible, porque sus columnas son vectores de una base (linealmente
-independientes). Cuando queremos hacer un cambio de coordenadas, normalmente
-conocemos $X$ y $M$, y lo que queremos es hallar $X'$. Como $M$ es invertible,
-en la ecuación anterior podemos despejar $X'$ así: $X' = M^{- 1} X$.\end{remark}
-
-\begin{example}
-  Sean las bases $B = \{ ( 1, 0 ), ( 0, 1 ) \}$ y $B' = \{ ( 1, 1 ), ( - 1, 1
-  ) \}$ de $\mathbb{R}^2$. Hallar las coordenadas respecto de la base $B'$
-  del vector $\vec{x} ( 4, 2 )_B$.
-  
-  Necesitamos las coordenadas de los vectores de $B'$ respecto de $B$. Es
-  inmediato comprobar que sus coordenadas son sus mismas componentes. Por
-  tanto, la matriz de cambio de coordenadas es:
-  
-  $M = \left(\begin{array}{cc}
-    1 & - 1\\
-    1 & 1
-  \end{array}\right) \Rightarrow M^{- 1} = \dfrac{1}{\det ( M )} [ \tmop{Adj} (
-  M ) ]^t = \dfrac{1}{2} \left(\begin{array}{cc}
-    1 & - 1\\
-    1 & 1
-  \end{array}\right)^t = \dfrac{1}{2} \left(\begin{array}{cc}
-    1 & 1\\
-    - 1 & 1
-  \end{array}\right)$
-  
-  Aplicando la ecuación anterior: $X = MX' \Leftrightarrow X' = M^{- 1} X
-  \Leftrightarrow X' = \dfrac{1}{2} \left(\begin{array}{cc}
-    1 & 1\\
-    - 1 & 1
-  \end{array}\right) \left(\begin{array}{c}
-    4\\
-    2
-  \end{array}\right) = \left(\begin{array}{c}
-    3\\
-    - 1
-  \end{array}\right)$
-  
-  Luego $\vec{x} ( 4, 2 )_B = \vec{x} ( 3, - 1 )_{B'}$. Efectivamente, $3 ( 1,
-  1 ) - ( - 1, 1 ) = ( 3 + 1, 3 - 1 ) = ( 4, 2 ) = \vec{x}$
-\end{example}
-
-\newpage\section{Subespacios vectoriales}
-
-\begin{definition}
-  [\textbf{Subespacio vectorial}]Sea $V$ un espacio vectorial sobre $K$. Sea $S
-  \subset V$ un subconjunto no vacío de $V$. Se dice que $S$ es un subespacio
-  vectorial de $V$ si y solo si toda combinación lineal de vectores de $S$ da
-  como resultado un vector de $S$.
-\end{definition}
-
-\begin{remark}Todos los subespacios vectoriales contienen al vector nulo $\vec{o}$, ya
-que multiplicar por 0 un vector de $S$ es una combinación lineal de vectores
-de $S$, el resultado es $\vec{o}$, y debe ser un vector de $S$.\end{remark}
-
-\begin{remark}Un subespacio vectorial es un espacio vectorial (cumple todas las
-propiedades).\end{remark}
-
-\begin{definition}
-  [\textbf{Envolvente lineal}]Sea $A$ un conjunto cualquiera de vectores de un
-  espacio vectorial $V$. Al conjunto de todas las posibles combinaciones
-  lineales de los vectores de $A$ se le llama envolvente lineal de $A$, y se
-  representa por $\mathcal{L}( A )$.
-\end{definition}
-
-\begin{remark}La envolvente lineal de un conjunto cualquiera de vectores de un espacio
-vectorial $V$ es un subespacio vectorial de $V$.\end{remark}
-
-\begin{remark}$\mathcal{L}( A )$ es el subespacio vectorial ``más pequeño'' que contiene
-a $A$ (es decir, cualquier otro subespacio que contenga a $A$ contiene también
-a $\mathcal{L}( A )$).\end{remark}
-
-\begin{remark}La dimensión del espacio vectorial $\mathcal{L}( A )$ es igual al rango
-de $A$. De hecho también podíamos haber definido el rango de un conjunto de
-vectores como la dimensión del subespacio generado por él.\end{remark}
-
-\begin{example}
-  El conjunto $A = \{ ( \lambda, 0 ) / \lambda \in \mathbb{R} \}$ es un
-  subespacio vectorial de $\mathbb{R}^2$, tiene dimensión 1, y es la
-  envolvente lineal de $B = \{ ( 1, 0 ) \}$: $\mathcal{L}( B ) = A$.
-\end{example}
-
-\begin{example}
-  El conjunto de todos los polinomios de primer grado o menor es un subespacio
-  vectorial del conjunto de todos los polinomios de segundo grado o menor. Es
-  un subespacio de dimensión 2.
-\end{example}
-
-\begin{example}
-  El subconjunto de $\mathbb{R}^2$, $A = \{ ( \lambda, 3 ) / \lambda \in
-  \mathbb{R} \}$ no es un subespacio vectorial. El vector $\vec{u} = ( 1, 3
-  )$ es un vector de $A$, sin embargo, el vector $\vec{w} = 2 \vec{u} = 2 ( 1,
-  3 ) = ( 2, 6 )$ no es un vector de $A$, pese a ser combinación lineal de un
-  vector de $A$. Nótese que $\vec{o} = ( 0, 0 ) \notin A$.
-\end{example}
 
 \chapter{Circunferencia y esfera}
 
@@ -10588,7 +10727,7 @@ podría definirse así:
 \begin{definition}
   [\textbf{Correspondencia}] Una correspondencia de un conjunto $A$ sobre otro conjunto $B$ es cualquier subconjunto del producto cartesiano $A \times B$. Al conjunto $A$ se le llama \emph{conjunto inicial} de la correspondencia, y al conjunto $B$ se le llama \emph{conjunto final}. Que $c$ es una correspondencia de $A$ sobre $B$, se expresa simbólicamente así: $c:A\rightarrow B$.
 
-  Dado un par $(a,b)$ de una correspondencia $c$, a $b$ se dice que $b$ es una \emph{imagen} de $a$ en la correspondencia $c$, y que $a$ es una \emph{antiimagen} de $b$ en la correspondencia $c$.
+  Dado un par $(a,b)$ de una correspondencia $c$, se dice que $b$ es una \emph{imagen} de $a$ en la correspondencia $c$, y que $a$ es una \emph{antiimagen} de $b$ en la correspondencia $c$.
 \end{definition}
 
 \begin{remark}
@@ -10597,7 +10736,7 @@ podría definirse así:
   \[d = \left\{\left(1,3\right),\left(2,\dfrac{1}{10}\right),\left(3,\dfrac{7}{5}\right),\left(4,\dfrac{3}{8}\right),\left(5,1\right)\right\}\]
   \[e = \left\{(1,1),(1,2),(2,2),(1,3),(2,3),(3,3),(1,4),(2,4),(3,4),(4,4),\hdots\right\}\]
   Tanto $c$ como $d$ son correspondencias de $\mathbb{N}$ sobre $\mathbb{Q}$, ya que son subconjuntos de $\mathbb{N}\times\mathbb{Q}$. Sin embargo, rara vez tendremos que vérnoslas con una correspondencia como $d$, ya que los pares seleccionados parecen completamente arbitrarios, mientras que $c$ es una correspondencia que llamaremos \emph{sucesión} y para la que desarrollaremos bastantes herramientas de cálculo.
-  La correspondencia $e:\mathbb{N}\rightarrow\mathbb{N}$ contiene todos los pares de números naturales tales que el primer número del par es menor o igal que el segundo. En esta correspondencia cada número natural tiene infinitas imágenes (todos los números naturales mayores o iguales que él), y cada número natural tiene tantas antiimágenes como indica su valor (los números naturales menores o iguales que él).
+  La correspondencia $e:\mathbb{N}\rightarrow\mathbb{N}$ contiene todos los pares de números naturales tales que el primer número del par es menor o igual que el segundo. En esta correspondencia cada número natural tiene infinitas imágenes (todos los números naturales mayores o iguales que él), y cada número natural tiene tantas antiimágenes como indica su valor (los números naturales menores o iguales que él).
 \end{remark}
 
 \begin{remark}
@@ -10744,9 +10883,9 @@ pero no podemos expresar la relación entre $x$ y $h(x)$ mediante una ecuación.
     El dominio de $f$ viene dado por
     \[\dom f = \{x \in \mathbb{R} \mid  -2 + |x| \geq 0\}\]
     Tenemos que
-    \[-2 + |x| \geq 0 \iff |x| \geq 2 \iff (x \geq 2) \vee (x \leq -2) \iff x \in (-\infty,-2] \cup [2,\infty)\]
+    \[-2 + |x| \geq 0 \iff |x| \geq 2 \iff (x \geq 2) \vee (x \leq -2) \iff x \in (-\infty,-2] \cup [2,\infty) [2, \infty)\]
     Por tanto,
-    \[\dom f = (-\infty,-2] \cup [2,\infty)\]
+    \[\dom f = (-\infty,-2] \cup [2,\infty) [2, \infty)\]
   \end{itemize}
 \end{example}
 
@@ -10801,7 +10940,7 @@ En una función no puede haber dos pares distintos con el mismo primer elemento, 
 
   Algunas se pueden representar mediante un sistema de ecuaciones, en lugar de una única ecuación. En estos casos, el conjunto de soluciones del sistema es el conjunto de puntos de la curva. Existe también un tipo de representación algebraica que se llama paramétrica, donde junto a las incógnitas que representan las coordenadas aparecen parámetros que no tienen una representación gráfica directa.
 
-  El segundo tipo de curvas (no representables mediante ecuaciones) es inmenso. Si se quiere un ejemplo, déjesele a un niño de 3 años un lápiz y un papel en blanco, y se obtendrá uno.
+  El segundo tipo de curvas (no representables mediante ecuaciones) es inmenso. Si se quiere un ejemplo, déjesele a un niño de tres años un lápiz y un papel en blanco, y se obtendrá uno.
 \end{remark}
 
 \begin{remark}
@@ -11165,131 +11304,6 @@ La manera más directa de definir completamente el comportamiento de una tal ``ca
   Dado que $\limite{n}{\infty}{0}=0$ y $\limite{n}{\infty}{\dfrac{2}{n}}=0$, ha de ser
 
   \[\limite{n}{\infty}{a_n}=0\]
-\end{example}
-
-\chapter{Cálculo de volúmenes mediante integrales}
-
-\begin{theorem}
-  [Secciones transversales] Sea $A(x)$ una función cuyo valor en $x=x_0$ es el área de una sección transversal de un sólido por un plano perpendicular al eje $OX$ en $x=x_0$. Si $A(x)$ es integrable, el volumen de dicho sólido vendrá dado por:
-\[V=\int_a^b\!A(x)\,\mathrm{d}x\]
-siendo $a$ la abscisa del punto del sólido situado más a la izquierda, y $b$ la del punto situado más a la derecha.
-\end{theorem}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=10cm]{seccionestransversales_cropped.pdf}
-  \caption{Cálculo de volúmenes por secciones transversales.}
-\end{figure}
-
-\begin{example}
-  Hallar el volumen común a dos esferas de igual radio, $r$, si el centro de cada una se encuentra en la superficie de la otra.
-
-  Situando el eje de $OX$ sobre la recta que une ambos centros, y el origen de coordenadas en el punto medio entre ellos, es claro que todas las secciones transversales del volumen pedido son círculos cuyo centro está en el eje $OX$, y cuyo radio, $R(x)$, verifica la siguiente ecuación (la distancia entre los centros es $r$):
-\[\left(\dfrac{r}{2}+x\right)^2+\left(R(x)\right)^2=r^2 \iff R(x)=\sqrt{r^2-\left(\dfrac{r}{2}+x\right)^2}\]
-
-El área de las secciones transversales vendrá dada por:
-\[A(x)=\pi \left(R(x)\right)^2=\pi\left[r^2-\left(\dfrac{r}{2}+x\right)^2\right]\]
-
-El volumen pedido será:
-\[\int_{-r/2}^{r/2}A(x)\,\mathrm{d}x = \int_{-r/2}^{r/2}\!\pi\left[r^2-\left(\dfrac{r}{2}+x\right)^2\right]\,\mathrm{d}x = \left[\pi\left(r^2x-\dfrac{1}{3}\left(\dfrac{r}{2}+x\right)^3\right)\right]_{-r/2}^{r/2} = \dfrac{2\pi r^3}{3}\]
-\end{example}
-
-\begin{definition}
-  [Sólido de revolución] Es un cuerpo geométrico generado al girar una región plana alrededor de un eje.
-\end{definition}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=10cm]{solidorevolucion_cropped.pdf}
-  \caption{Sólido de revolución}
-\end{figure}
-
-\begin{example}
-  Un cono es un sólido de revolución generado al girar un triángulo rectángulo alrededor de uno de sus catetos.
-
-  Un cilindro es un sólido de revolución generado al girar un rectángulo alrededor de uno de sus lados.
-
-  Se obtiene también un sólido de revolución al girar alrededor del eje de abscisas la región plana delimitada por la gráfica de una función $f$, el eje de absicsas y las rectas $x=a$ y $x=b$.
-\end{example}
-
-\begin{theorem}
-  [Cálculo de volúmenes: método del disco] El volumen del sólido de revolución obtenido al girar en torno al eje $OX$ la región plana deliimitada por la gráfica de la función $f$, el eje de abscisas y las rectas $x=1$, $x=b$, viene dado por:
-\[V=\int_a^b\!\pi\left(f(x)\right)^2\,\mathrm{d}x\]
-\end{theorem}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=18cm]{disco_cropped.pdf}
-  \caption{Cálculo de volúmenes: método del disco}
-\end{figure}
-
-\begin{remark}
-  La fórmula anterior se deduce dividiendo el volumen en cilindros de altura $\mathrm{d}x$, con el eje en el eje de abscisas, de modo que su radio es $f(x)$.
-\end{remark}
-
-\begin{remark}
-  También se puede aplicar al cálculo de volúmenes engendrados al girar un recinto plano en torno al eje vertical: habría que utilizar la función inversa de $f$, de modo que $x=f^{-1}(y)$, y realizar la integral en la variable $y$, entre $f^{-1}(a)$ y $f^{-1}(b)$.
-\end{remark}
-
-\begin{remark}
-  Para calcular el volumen generado por un recinto delimitado por dos curvas, habría que restar el volumen generado por la curva inferior del volumen generado por la curva superior, resultando:
-\[V=\int_a^b\!\pi\left[\left(f(x)\right)^2-\left(g(x)\right)^2\right]\,\mathrm{d}x\]
-\end{remark}
-
-\begin{example}
-  Hallar el volumen del sólido de revolución obtenido al rotar sobre el eje OX la región limitada por la curva $y=x^2$ y las rectas $y=\frac{x}{2}$, $x=1$ y $x=2$.
-
-  \begin{center}\includegraphics[width=8cm]{discoejemplo_cropped.pdf}\end{center}
-
-  Tendremos que restar al volumen generado por la parábola, el ``hueco'' interior generado por la recta $y=x/2$:
-
-  \begin{center}\includegraphics[width=8cm]{discoejemplo2_cropped.pdf}\end{center}
-
-  Aplicaremos el método del disco:
-
-  \begin{eqnarray*}V & = & \int_1^2\pi\left[f^2(x)-g^2(x)\right] dx \\
-    & = & \int_1^2\pi\left[(x^2)^2-\left(\dfrac{x}{2}\right)^2\right] dx \\
-    & = & \pi\left[\dfrac{x^5}{5}-\dfrac{x^3}{12}\right]_1^2 \\
-    & = & \pi\left(\dfrac{32}{5}-\dfrac{2}{3}-\dfrac{1}{5}+\dfrac{1}{12}\right) \\
-    & = & \dfrac{337\pi}{60}
-  \end{eqnarray*}
-\end{example}
-
-\begin{theorem}
-  [Cálculo de volúmenes: método de la cáscara] El volumen del sólido de revolución generado al girar en torno al eje vertical el recinto delimitado por la gráfica de la función $f$, el eje horizontal y las rectas $x=a\geq0$, $x=b>a$, viene dado por:
-\[V=\int_a^b\!2\pi x|f(x)|\,\mathrm{d}x\]
-\end{theorem}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=18cm]{cascara_cropped.pdf}
-  \caption{Cálculo de volúmenes: método de la cáscara}
-\end{figure}
-
-\begin{remark}
-  La fórmula anterior se obtiene dividiendo el volumen en ``cáscaras'' cilíndricas de grosor $\mathrm{d}x$, cuyo eje es el eje vertical, de modo que su radio interior es $x$, su radio exterior es $x+\mathrm{d}x$, y su altura es $f(x)$.
-\end{remark}
-
-\begin{remark}
-  Al igual que en el método del disco, es posible aplicar la fórmula a volúmenes engendrados girando en torno al eje horizontal, intercambiando $x$ por $y$, y utilizando la función inversa $x=f^{-1}(y)$. También se puede aplicar a recintos delimitados por dos funciones, utilizando la diferencia de ambas.
-\end{remark}
-
-\begin{example}
-  Hallar el volumen generado al rotar alrededor del eje OY la región comprendida entre la parábola $y=x^2-4x$, la recta $y=x+2$ y las rectas $x=1$ y $x=3$.
-
-  \begin{center}
-    \includegraphics[width=8cm]{cascaraejemplo1_cropped.pdf}\includegraphics[width=8cm]{cascaraejemplo2_cropped.pdf}
-  \end{center}
-
-  Utilizaremos el método de la cáscara. Si llamamos, $g(x)=x^2-4x$ y $f(x)=x+2$, tenemos que:
-
-  \begin{eqnarray*} V & = & \int_1^3 2\pi x\left[f(x)-g(x)\right] dx \\
-    & = & \int_1^3 2\pi x\left[x+2-(x^2-4x)\right] dx \\
-    & = & \int_1^3 2\pi (-x^3+5x^2+2x) dx\\
-    & = & 2\pi\left[-\dfrac{x^4}{4}+\dfrac{5x^3}{3}+x^2\right]_1^3\\
-    & = & \dfrac{188\pi}{3}
-  \end{eqnarray*}
-
 \end{example}
 
 

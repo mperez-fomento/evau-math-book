@@ -1,0 +1,55 @@
+(TeX-add-style-hook
+ "enapuntesm2"
+ (lambda ()
+   (TeX-add-to-alist 'LaTeX-provided-class-options
+                     '(("book" "spanish")))
+   (TeX-run-style-hooks
+    "latex2e"
+    "book"
+    "bk10"
+    "mypack")
+   (LaTeX-add-labels
+    "fig:grafos1:a"
+    "fig:grafos1:b"
+    "fig:grafos1:c"
+    "fig:grafos1"
+    "fig:limites1"
+    "fig:limites2"
+    "fig:limites6"
+    "fig:limites3:a"
+    "fig:limites3:b"
+    "fig:limites3"
+    "fig:limites5:a"
+    "fig:limites5:b"
+    "fig:limites5:c"
+    "fig:limites5:d"
+    "fig:limites5"
+    "fig:limites8:a"
+    "fig:limites8:b"
+    "fig:limites8:c"
+    "fig:limites8:d"
+    "fig:limites8:e"
+    "fig:limites8:f"
+    "fig:limites8"
+    "fig:tiposdiscontinuidades:a"
+    "fig:tiposdiscontinuidades:b"
+    "fig:tiposdiscontinuidades:c"
+    "fig:tiposdiscontinuidades"
+    "fig:continuidad1:a"
+    "fig:continuidad1:b"
+    "fig:continuidad1"
+    "fig:continuidad2"
+    "fig:asintotas1"
+    "fig:asintotas2"
+    "fig:significadoderivada"
+    "fig:puntosangulosos"
+    "fig:funcionderivada"
+    "fig:rolle:a"
+    "fig:rolle:b"
+    "fig:rolle:c"
+    "fig:rolle"
+    "fig:lagrange"
+    "fig:curvatura"
+    "fig:segundaderivada"))
+ :latex)
+
